@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.futureadymedia.alumni.R;
 import com.futureadymedia.alumni.fragment.FragmentDrawer;
+import com.futureadymedia.alumni.fragment.MapViewFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
@@ -85,9 +86,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
-                /*fragment = new HomeFragment();
-                title = getString(R.string.title_home);*/
-                Log.e("Nav click", "Case"+position);
+                fragment = new MapViewFragment();
+                title = getString(R.string.title_home);
+               // Log.e("Nav click", "Case"+position);
                 break;
             case 1:
               /*  fragment = new FriendsFragment();
