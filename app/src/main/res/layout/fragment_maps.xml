@@ -7,23 +7,6 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <RadioGroup
-        android:id="@+id/custom_info_window_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <RadioButton
-            android:id="@+id/default_info_window"
-            android:checked="true"
-            android:text="Default info window" />
-
-        <RadioButton
-            android:id="@+id/custom_info_contents"
-            android:text="Custom Info Content" />
-
-        <RadioButton
-            android:id="@+id/custom_info_window"
-            android:text="Custom Info Window" />
-    </RadioGroup>
 
 </RelativeLayout>
