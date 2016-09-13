@@ -75,15 +75,15 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
 
     private Marker mMelbourne;
 
-    private static final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
+    private static final LatLng HOME = new LatLng(19.2078186,72.8632803);
 
-    private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
+    private static final LatLng HOME1 = new LatLng(19.2082904,72.8641981);
 
-    private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
+    /*private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
 
     private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
 
-    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
+    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);*/
 
     /**
      * Keeps track of the last selected marker (though it may no longer be selected).  This is
@@ -157,9 +157,10 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
     public void onMapReady(GoogleMap map) {
         gMap = map;
         Log.e(MAP_TAG, "before addMArkerCall");
+        gMap.setMyLocationEnabled(true);
         addMarkersToMap();
 
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(BRISBANE).zoom(15).build();
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(HOME).zoom(15).build();
         gMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         map.setContentDescription("Map with lots of markers.");
@@ -198,8 +199,8 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
 
     private void addMarkersToMap() {
         Log.e(MAP_TAG, "inside addMArkerCall"+gMap);
-        gMap.addMarker(new MarkerOptions().position(BRISBANE).title("Marker Title").snippet("Marker Description").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        gMap.addMarker(new MarkerOptions().position(SYDNEY).title("Marker Title").snippet("Marker Description").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        gMap.addMarker(new MarkerOptions().position(HOME).title("Marker Title").snippet("Marker Description").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        gMap.addMarker(new MarkerOptions().position(HOME1).title("Marker Title").snippet("Marker Description").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         // Uses a colored icon.
        /* mBrisbane = gMap.addMarker(new MarkerOptions()
                 .position(BRISBANE)
