@@ -1,13 +1,25 @@
 package com.futureadymedia.alumni.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +28,16 @@ import android.view.ViewTreeObserver;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.futureadymedia.alumni.R;
+import com.futureadymedia.alumni.activity.MainActivity;
 import com.futureadymedia.alumni.activity.MarkerJSONParser;
+import com.futureadymedia.alumni.utils.PermissionUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -55,13 +70,17 @@ import java.util.Random;
 /**
  * Created by developer on 9/12/2016.
  */
-public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
+public class MapViewFragment extends BaseFragment implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnInfoWindowClickListener,  GoogleMap.OnMarkerDragListener {
 
     public static String MAP_TAG = "MAPcycle";
 
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+    private boolean mPermissionDenied = false;
 
     MapView mMapView;
     private GoogleMap gMap = null;
+    private View rootView;
     private Marker myMarker;
     private Context context;
 
@@ -79,11 +98,82 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
 
     private static final LatLng HOME1 = new LatLng(19.2082904,72.8641981);
 
-    /*private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
+    /** Demonstrates customizing the info window and/or its contents. */
+    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
-    private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
+        // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
+        // "title" and "snippet".
+        private final View mWindow;
 
-    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);*/
+        private final View mContents;
+
+        CustomInfoWindowAdapter() {
+            mWindow = getActivity().getLayoutInflater().inflate(R.layout.custom_info_window, null);
+            mContents = getActivity().getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_window) {
+                // This means that getInfoContents will be called.
+                return null;
+            }
+            render(marker, mWindow);
+            return mWindow;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_contents) {
+                // This means that the default info contents will be used.
+                return null;
+            }
+            render(marker, mContents);
+            return mContents;
+        }
+
+        private void render(Marker marker, View view) {
+            int badge;
+            // Use the equals() method on a Marker to check for equals.  Do not use ==.
+            if (marker.equals(mBrisbane)) {
+                badge = R.drawable.badge_qld;
+            } else if (marker.equals(mAdelaide)) {
+                badge = R.drawable.badge_sa;
+            } else if (marker.equals(mSydney)) {
+                badge = R.drawable.badge_nsw;
+            } else if (marker.equals(mMelbourne)) {
+                badge = R.drawable.badge_victoria;
+            } else if (marker.equals(mPerth)) {
+                badge = R.drawable.badge_wa;
+            } else {
+                // Passing 0 to setImageResource will clear the image view.
+                badge = 0;
+            }
+            ((ImageView) view.findViewById(R.id.badge)).setImageResource(badge);
+
+            String title = marker.getTitle();
+            TextView titleUi = ((TextView) view.findViewById(R.id.title));
+            if (title != null) {
+                // Spannable string allows us to edit the formatting of the text.
+                SpannableString titleText = new SpannableString(title);
+                titleText.setSpan(new ForegroundColorSpan(Color.RED), 0, titleText.length(), 0);
+                titleUi.setText(titleText);
+            } else {
+                titleUi.setText("");
+            }
+
+            String snippet = marker.getSnippet();
+            TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
+            if (snippet != null && snippet.length() > 12) {
+                SpannableString snippetText = new SpannableString(snippet);
+                snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, 10, 0);
+                snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 12, snippet.length(), 0);
+                snippetUi.setText(snippetText);
+            } else {
+                snippetUi.setText("");
+            }
+        }
+    }
 
     /**
      * Keeps track of the last selected marker (though it may no longer be selected).  This is
@@ -113,11 +203,26 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_maps, container, false);
+        rootView = inflater.inflate(R.layout.fragment_maps, container, false);
 
-        mMapView = (MapView) rootView.findViewById(R.id.mapView);
+        findId();
+        setFont();
+        setListener();
+
+
         mMapView.onCreate(savedInstanceState);
         Log.e(MAP_TAG, "before Sync started");
+
+
+        mOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (mLastSelectedMarker != null && mLastSelectedMarker.isInfoWindowShown()) {
+                    // Refresh the info window when the info window's content has changed.
+                    mLastSelectedMarker.showInfoWindow();
+                }
+            }
+        });
 
         mMapView.getMapAsync(this);
 
@@ -157,13 +262,19 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
     public void onMapReady(GoogleMap map) {
         gMap = map;
         Log.e(MAP_TAG, "before addMArkerCall");
-        gMap.setMyLocationEnabled(true);
+        //gMap.setMyLocationEnabled(true);
         addMarkersToMap();
+
+        enableMyLocation();
+        gMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        gMap.setOnMyLocationButtonClickListener(this);
+        gMap.setOnInfoWindowClickListener(this);
+        gMap.setOnMarkerDragListener(this);
 
         CameraPosition cameraPosition = new CameraPosition.Builder().target(HOME).zoom(15).build();
         gMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        map.setContentDescription("Map with lots of markers.");
+        //map.setContentDescription("Map with lots of markers.");
         /*gMap.setMyLocationEnabled(true);
         LatLng Myhome = new LatLng(19.2078186,72.8632);
         LatLng Myhome1 = new LatLng(19,72);
@@ -194,6 +305,68 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
                 }
             });
         }*/
+    }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission to access the location is missing.
+            PermissionUtils.requestPermission((MainActivity)getActivity(), LOCATION_PERMISSION_REQUEST_CODE,
+                    Manifest.permission.ACCESS_FINE_LOCATION, true);
+        } else if (gMap != null) {
+            // Access to the location has been granted to the app.
+            gMap.setMyLocationEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        //Toast.makeText(getActivity(), "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+        final LocationManager manager = (LocationManager)getActivity().getSystemService( Context.LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+        }
+        // Return false so that we don't consume the event and the default behavior still occurs
+        // (the camera animates to the user's current position).
+        return false;
+    }
+
+
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
+            return;
+        }
+
+        if (PermissionUtils.isPermissionGranted(permissions, grantResults,
+                Manifest.permission.ACCESS_FINE_LOCATION)) {
+            // Enable the my location layer if the permission has been granted.
+            enableMyLocation();
+        } else {
+            // Display the missing permission error dialog when the fragments resume.
+            mPermissionDenied = true;
+        }
     }
 
 
@@ -253,12 +426,25 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
         }*/
     }
 
-   
+
 
     @Override
     public void onResume() {
         super.onResume();
         mMapView.onResume();
+        if (mPermissionDenied) {
+            // Permission was not granted, display error dialog.
+            showMissingPermissionError();
+            mPermissionDenied = false;
+        }
+    }
+
+    /**
+     * Displays a dialog with error message explaining that the location permission is missing.
+     */
+    private void showMissingPermissionError() {
+        PermissionUtils.PermissionDeniedDialog
+                .newInstance(true).show(getFragmentManager(), "dialog");
     }
 
     @Override
@@ -278,6 +464,41 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback  {
         super.onLowMemory();
         mMapView.onLowMemory();
     }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(getActivity(), "Click Info Window", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+        mTopText.setText("onMarkerDragStart");
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        mTopText.setText("onMarkerDragEnd");
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+        mTopText.setText("onMarkerDrag.  Current Position: " + marker.getPosition());
+    }
+
+    @Override
+    public void findId(){
+        mMapView = (MapView)rootView.findViewById(R.id.mapView);
+        mTopText = (TextView)rootView.findViewById(R.id.top_text);
+        mTagText = (TextView)rootView.findViewById(R.id.tag_text);
+        mOptions = (RadioGroup)rootView.findViewById(R.id.custom_info_window_options);
+    }
+
+    @Override
+    public void setFont(){}
+
+    @Override
+    public void setListener(){}
 
   /*  @Override
     public boolean onMarkerClick(final Marker marker) {

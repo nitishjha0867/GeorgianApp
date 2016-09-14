@@ -3,10 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <TextView
+        android:id="@+id/top_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:text="Drag Melborne" />
+
+    <TextView
+        android:id="@+id/tag_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <RadioGroup
+        android:id="@+id/custom_info_window_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/default_info_window"
+            android:checked="true"
+            android:text="Default window" />
+
+        <RadioButton
+            android:id="@+id/custom_info_contents"
+            android:text="Custom info contents" />
+
+        <RadioButton
+            android:id="@+id/custom_info_window"
+            android:text="Custom info window" />
+    </RadioGroup>
 
 
 </RelativeLayout>
