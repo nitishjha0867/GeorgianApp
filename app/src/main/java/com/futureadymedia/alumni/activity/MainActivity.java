@@ -16,10 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.futureadymedia.alumni.R;
 import com.futureadymedia.alumni.fragment.FragmentDrawer;
+import com.futureadymedia.alumni.fragment.FrasgmentSplash;
 import com.futureadymedia.alumni.fragment.MapViewFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -28,11 +30,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+    public static FrameLayout flContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        flContainer = (FrameLayout) findViewById(R.id.container_body);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -85,17 +90,23 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Fragment fragment = null;
         String title = getString(R.string.app_name);
         switch (position) {
+
             case 0:
+                fragment = new FrasgmentSplash();
+                // Log.e("Nav click", "Case"+position);
+                break;
+
+            case 1:
                 fragment = new MapViewFragment();
                 title = getString(R.string.title_home);
                // Log.e("Nav click", "Case"+position);
                 break;
-            case 1:
+            case 2:
               /*  fragment = new FriendsFragment();
                 title = getString(R.string.title_friends);*/
                 Log.e("Nav click", "Case"+position);
                 break;
-            case 2:
+            case 3:
               /*  fragment = new MessagesFragment();
                 title = getString(R.string.title_messages);*/
                 Log.e("Nav click", "Case"+position);
