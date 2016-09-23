@@ -4,6 +4,7 @@ package com.futureadymedia.alumni.adapter;
  * Created by developer on 9/12/2016.
  */
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -43,6 +44,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NavDrawerItem current = data.get(position);
         holder.title.setText(current.getTitle());
+        holder.title.setCompoundDrawablesWithIntrinsicBounds(current.getIcons(), 0, 0, 0);
     }
 
     @Override

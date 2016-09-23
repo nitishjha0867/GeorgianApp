@@ -24,7 +24,7 @@ import com.futureadymedia.alumni.utils.CommonUtils;
 /**
  * Created by developer on 9/14/2016.
  */
-public class FrasgmentSplash extends BaseFragment implements View.OnClickListener {
+public class FragmentSplash extends BaseFragment implements View.OnClickListener {
 
     Context context;
     DrawerLayout drawerLayout;
@@ -113,7 +113,7 @@ public class FrasgmentSplash extends BaseFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.enterButton:
-                CommonUtils.setFragment(new MapViewFragment(), false, getActivity(), MainActivity.flContainer, "splash");
+                ((MainActivity) context).onFragmentChange(1);
                 break;
         }
     }

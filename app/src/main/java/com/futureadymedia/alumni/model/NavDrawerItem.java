@@ -6,6 +6,7 @@ package com.futureadymedia.alumni.model;
 public class NavDrawerItem {
     private boolean showNotify;
     private String title;
+    public int icons;
 
 
     public NavDrawerItem() {
@@ -31,5 +32,13 @@ public class NavDrawerItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setIcons(int icons) {
+        this.icons = icons;
+    }
+
+    public int getIcons() {
+        return icons;
     }
 }

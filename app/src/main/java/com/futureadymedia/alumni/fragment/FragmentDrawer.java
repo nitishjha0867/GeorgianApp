@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,11 +32,12 @@ public class FragmentDrawer extends Fragment {
     private static String TAG = FragmentDrawer.class.getSimpleName();
 
     private RecyclerView recyclerView;
-    private ActionBarDrawerToggle mDrawerToggle;
+    public static ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private NavigationDrawerAdapter adapter;
     private View containerView;
     private static String[] titles = null;
+    private static int[] icons= {R.drawable.ic_place_black_36dp, R.drawable.ic_place_black_36dp, R.drawable.ic_place_black_36dp, R.drawable.ic_place_black_36dp, R.drawable.ic_place_black_36dp, R.drawable.ic_place_black_36dp, R.drawable.ic_place_black_36dp, R.drawable.ic_place_black_36dp};
     private FragmentDrawerListener drawerListener;
 
     public FragmentDrawer() {
@@ -54,9 +56,13 @@ public class FragmentDrawer extends Fragment {
         for (int i = 0; i < titles.length; i++) {
             NavDrawerItem navItem = new NavDrawerItem();
             navItem.setTitle(titles[i]);
+            navItem.setIcons(icons[i]);
+
             data.add(navItem);
         }
         return data;
+
+
     }
 
     @Override
@@ -65,6 +71,10 @@ public class FragmentDrawer extends Fragment {
 
         // drawer labels
         titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
+       // icons = getActivity().getResources().getIntArray(R.array.nav_drawer_icons);
+        //Log.e("ICONS", ""+icons[0]);
+
+
     }
 
     @Override
@@ -79,7 +89,7 @@ public class FragmentDrawer extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onClick(final View view, final int position) {
                 drawerListener.onDrawerItemSelected(view, position);
                 mDrawerLayout.closeDrawer(containerView);
             }
@@ -174,7 +184,6 @@ public class FragmentDrawer extends Fragment {
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
         }
-
 
     }
 
