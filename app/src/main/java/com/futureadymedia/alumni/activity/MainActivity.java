@@ -20,6 +20,7 @@ import com.futureadymedia.alumni.fragment.FragmentDrawer;
 import com.futureadymedia.alumni.fragment.FragmentForgotpassword;
 import com.futureadymedia.alumni.fragment.FragmentInfo;
 import com.futureadymedia.alumni.fragment.FragmentErrorMessage;
+import com.futureadymedia.alumni.fragment.FragmentSchoolDetails;
 import com.futureadymedia.alumni.fragment.FragmentSignupLogin;
 import com.futureadymedia.alumni.fragment.FragmentSplash;
 import com.futureadymedia.alumni.fragment.FragmentSuccessMessage;
@@ -193,6 +194,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_messages);*/
                 fragment = new FragmentCurrentAddress();
                 CommonUtils.setFragment(fragment, false, MainActivity.this, flContainer, "currentaddress");
+                break;
+
+            case 10:
+              /*  fragment = new MessagesFragment();
+                title = getString(R.string.title_messages);*/
+                fragment = new FragmentSchoolDetails();
+                CommonUtils.setFragment(fragment, false, MainActivity.this, flContainer, "schooldetails");
                 break;
 
             default:

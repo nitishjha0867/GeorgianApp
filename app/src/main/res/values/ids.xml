@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="llSchool2" />
+    <item type="id" name="llSchool3" />
+    <item type="id" name="llSchool4" />
+    <item type="id" name="llSchool5" />
+
+    <item type="id" name="spinnerSchoolFrom2" />
+    <item type="id" name="spinnerSchoolFrom3" />
+    <item type="id" name="spinnerSchoolFrom4" />
+    <item type="id" name="spinnerSchoolFrom5" />
+
+    <item type="id" name="spinnerSchoolTo2" />
+    <item type="id" name="spinnerSchoolTo3" />
+    <item type="id" name="spinnerSchoolTo4" />
+    <item type="id" name="spinnerSchoolTo5" />
+
+    <item type="id" name="spinnerSchool2" />
+    <item type="id" name="spinnerSchool3" />
+    <item type="id" name="spinnerSchool4" />
+    <item type="id" name="spinnerSchool5" />
+
+    <item type="id" name="etRoll2" />
+    <item type="id" name="etRoll3" />
+    <item type="id" name="etRoll4" />
+    <item type="id" name="etRoll5" />
+
+    <item type="id" name="tvSchoolno2" />
+    <item type="id" name="tvSchoolno3" />
+    <item type="id" name="tvSchoolno4" />
+    <item type="id" name="tvSchoolno5" />
+</resources>
