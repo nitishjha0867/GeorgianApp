@@ -33,7 +33,7 @@ public class FragmentDrawer extends Fragment {
 
     private RecyclerView recyclerView;
     public static ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
+    public static DrawerLayout mDrawerLayout;
     private NavigationDrawerAdapter adapter;
     private View containerView;
     private static String[] titles = null;

@@ -61,19 +61,10 @@ public class FragmentSignupLogin extends BaseFragment implements View.OnClickLis
 
         loadingPos = 0;
 
-        setHasOptionsMenu(true);
         ActiveTab(0);
         return view;
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_search);
-        MenuItem item1=menu.findItem(R.id.action_settings);
-        item.setVisible(false);
-        item1.setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-    }
 
     public void ActiveTab(int position)
     {

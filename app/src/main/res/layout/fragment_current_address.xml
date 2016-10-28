@@ -31,10 +31,12 @@
                         android:layout_marginTop="@dimen/size5">
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etAddress1_layout">
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/etAddress1"
                                 android:hint="@string/address_line1"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
@@ -46,11 +48,13 @@
                         android:layout_marginTop="@dimen/size5">
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etAddress2_layout">
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/address_line2"/>
+                                android:hint="@string/address_line2"
+                                android:id="@+id/etAddress2"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
 
@@ -61,10 +65,12 @@
                         android:layout_marginTop="@dimen/size5">
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etPinCode_layout">
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/etPinCode"
                                 android:hint="@string/pincode"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
@@ -76,10 +82,12 @@
                         android:layout_marginTop="@dimen/size5">
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etCity_layout">
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/etCity"
                                 android:hint="@string/town_city"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
@@ -91,10 +99,12 @@
                         android:layout_marginTop="@dimen/size5">
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etState_layout">
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/etState"
                                 android:hint="@string/state"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
@@ -106,10 +116,12 @@
                         android:layout_marginTop="@dimen/size5">
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etCountry_layout">
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/etCountry"
                                 android:hint="@string/country"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
@@ -118,40 +130,41 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/size5">
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.35"
                             android:orientation="horizontal"
-                            android:gravity="center">
+                            android:layout_gravity="center"
+                            android:paddingLeft="@dimen/size10"
+                            android:paddingRight="@dimen/size10">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/work"/>
+                                android:gravity="center"
+                                android:text="Adress Type"/>
                         </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.3"
-                            android:orientation="horizontal"
-                            android:gravity="center">
+
                             <Switch
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-                        <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:textOff="Work"
+                                android:textOn="Home"
+                                android:checked="true"
+                                android:id="@+id/swtchAddressType"/>
+                       <!--<LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.35"
+                            android:layout_weight="0.2"
                             android:orientation="horizontal"
-                            android:gravity="center">
+                            android:layout_gravity="center">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home"/>
-                        </LinearLayout>
-
+                        </LinearLayout>-->
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
@@ -166,6 +179,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/btnSaveAddress"
                 android:text="@string/save_address"/>
         </LinearLayout>
     </LinearLayout>

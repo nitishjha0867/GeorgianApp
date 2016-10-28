@@ -35,19 +35,10 @@ public class FragmentErrorMessage extends BaseFragment implements View.OnClickLi
         findId();
         setFont();
         setListener();
-        setHasOptionsMenu(true);
 
         return view;
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_search);
-        MenuItem item1=menu.findItem(R.id.action_settings);
-        item.setVisible(false);
-        item1.setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-    }
 
     @Override
     public void findId() {

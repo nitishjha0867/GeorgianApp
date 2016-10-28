@@ -2,102 +2,100 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size10"
-        android:id="@+id/llSchool1">
-
-        <TextView
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvSchoolno1"
-            android:textSize="@dimen/size20"
-            android:gravity="center_horizontal"
-            android:text="School"/>
+            android:layout_margin="@dimen/size10"
+            android:id="@+id/llSchool1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/etRoll_layout">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/rollno"
-                    android:id="@+id/etRoll1" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/spinner_bg"
-            android:layout_marginTop="@dimen/size6"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <com.futureadymedia.alumni.widgets.HintSpinner
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id = "@+id/spinnerSchool1"
-                android:gravity="center_vertical|start"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent"
-                android:prompt="@string/select_school"
-                android:spinnerMode="dropdown"
-                android:layout_marginLeft="2dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size6"
-            android:layout_marginBottom="@dimen/size6"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <com.futureadymedia.alumni.widgets.HintSpinner
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:id = "@+id/spinnerSchoolFrom1"
-                android:gravity="center_vertical|start"
-                android:textColor="@color/black"
-                android:background="@drawable/spinner_bg"
-                android:prompt="@string/from"
-                android:spinnerMode="dropdown"
-                android:layout_marginRight="5dp"/>
-
-            <com.futureadymedia.alumni.widgets.HintSpinner
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:id = "@+id/spinnerSchoolTo1"
-                android:gravity="center_vertical|start"
-                android:textColor="@color/black"
-                android:background="@drawable/spinner_bg"
-                android:prompt="@string/to"
-                android:spinnerMode="dropdown"
-                android:layout_marginLeft="5dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/morehouse"
-                android:text="@string/more_house"
-                android:gravity="center_horizontal"/>
+                android:id="@+id/tvSchoolno1"
+                android:textSize="@dimen/size20"
+                android:gravity="center_horizontal"
+                android:text="School"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etRoll_layout">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/rollno"
+                        android:id="@+id/etRoll1" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_bg"
+                android:layout_marginTop="@dimen/size6"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <com.futureadymedia.alumni.widgets.HintSpinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id = "@+id/spinnerSchool1"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/black"
+                    android:background="@android:color/transparent"
+                    android:prompt="@string/select_school"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginLeft="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size6"
+                android:layout_marginBottom="@dimen/size6"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <com.futureadymedia.alumni.widgets.HintSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:id = "@+id/spinnerSchoolFrom1"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/black"
+                    android:background="@drawable/spinner_bg"
+                    android:prompt="@string/from"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginRight="5dp"/>
+
+                <com.futureadymedia.alumni.widgets.HintSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:id = "@+id/spinnerSchoolTo1"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/black"
+                    android:background="@drawable/spinner_bg"
+                    android:prompt="@string/to"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginLeft="5dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/llAddHouse"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_marginBottom="@dimen/size10">
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

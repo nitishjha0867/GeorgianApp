@@ -20,6 +20,7 @@ import com.futureadymedia.alumni.R;
 import com.futureadymedia.alumni.activity.MainActivity;
 import com.futureadymedia.alumni.utils.CommonUtils;
 import com.futureadymedia.alumni.utils.Constants;
+import com.futureadymedia.alumni.utils.DrawerLocker;
 
 /**
  * Created by developer on 9/15/2016.
@@ -40,24 +41,14 @@ public class FragmentInfo extends BaseFragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = LayoutInflater.from(context).inflate(R.layout.fragment_info, null);
-
+        //((DrawerLocker) context).setDrawerEnabled(false);
         findId();
         setFont();
         setListener();
 
-        setHasOptionsMenu(true);
-
         return view;
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_search);
-        MenuItem item1=menu.findItem(R.id.action_settings);
-        item.setVisible(false);
-        item1.setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-    }
 
 
     @Override
@@ -80,7 +71,7 @@ public class FragmentInfo extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume(){
         super.onResume();
-        Log.e("APPDEBUG", "Inside resume0");
+        MainActivity.setTitle("GEORGIAN CONNECT");
     }
 
     @Override

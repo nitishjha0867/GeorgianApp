@@ -20,6 +20,7 @@ import com.futureadymedia.alumni.R;
 import com.futureadymedia.alumni.activity.MainActivity;
 import com.futureadymedia.alumni.adapter.NavigationDrawerAdapter;
 import com.futureadymedia.alumni.utils.CommonUtils;
+import com.futureadymedia.alumni.utils.DrawerLocker;
 
 /**
  * Created by developer on 9/14/2016.
@@ -73,26 +74,27 @@ public class FragmentSplash extends BaseFragment implements View.OnClickListener
             }
         };
         background.start();*/
+        //((DrawerLocker) context).setDrawerEnabled(false);
 
         findId();
         setFont();
         setListener();
 
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
 
         return view;
     }
 
 
 
-    @Override
+   /* @Override
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem item=menu.findItem(R.id.action_search);
         MenuItem item1=menu.findItem(R.id.action_settings);
         item.setVisible(false);
         item1.setVisible(false);
         super.onPrepareOptionsMenu(menu);
-    }
+    }*/
 
     @Override
     public void findId() {
@@ -116,5 +118,23 @@ public class FragmentSplash extends BaseFragment implements View.OnClickListener
                 ((MainActivity) context).onFragmentChange(1);
                 break;
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        MainActivity.setTitle("Welcome");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.e("SPLASH", "inside pause");
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.e("SPLASH", "inside start");
     }
 }

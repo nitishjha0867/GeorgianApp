@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size15">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.futureadymedia.alumni.widgets.HintSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:id = "@+id/spinnerIndustry"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/black"
+                    android:background="@drawable/spinner_bg"
+                    android:prompt="@string/select_industry"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size15">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.futureadymedia.alumni.widgets.HintSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:id = "@+id/spinnerSchool"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/black"
+                    android:background="@drawable/spinner_bg"
+                    android:prompt="@string/select_school"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size15">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.futureadymedia.alumni.widgets.HintSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:id = "@+id/spinnerHouse"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/black"
+                    android:background="@drawable/spinner_bg"
+                    android:prompt="@string/select_house"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size15">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.futureadymedia.alumni.widgets.HintSpinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:id = "@+id/spinnerBatch"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/black"
+                    android:background="@drawable/spinner_bg"
+                    android:prompt="@string/select_batch"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size15">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnFind"
+                android:text="@string/find"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

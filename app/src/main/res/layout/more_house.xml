@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size25"
+        android:layout_marginRight="@dimen/size25"
+        android:id="@+id/llHouse1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvHouseno1"
+            android:textSize="@dimen/size15"
+            android:gravity="center_horizontal"
+            android:text="House"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_bg"
+            android:layout_marginTop="@dimen/size6"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <com.futureadymedia.alumni.widgets.HintSpinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id = "@+id/spinnerHouse1"
+                android:gravity="center_vertical|start"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                android:prompt="@string/select_house"
+                android:spinnerMode="dropdown"
+                android:layout_marginLeft="2dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size6"
+            android:layout_marginBottom="@dimen/size6"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <com.futureadymedia.alumni.widgets.HintSpinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:id = "@+id/spinnerHouseFrom1"
+                android:gravity="center_vertical|start"
+                android:textColor="@color/black"
+                android:background="@drawable/spinner_bg"
+                android:prompt="@string/from"
+                android:spinnerMode="dropdown"
+                android:layout_marginRight="5dp"/>
+
+            <com.futureadymedia.alumni.widgets.HintSpinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:id = "@+id/spinnerHouseTo1"
+                android:gravity="center_vertical|start"
+                android:textColor="@color/black"
+                android:background="@drawable/spinner_bg"
+                android:prompt="@string/to"
+                android:spinnerMode="dropdown"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

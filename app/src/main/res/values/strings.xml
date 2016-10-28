@@ -94,7 +94,7 @@
     <string name="current_address">CURRENT ADDRESS ></string>
     <string name="proffesional_details">PROFFESIONAL DETAILS ></string>
     <string name="address_line1">Address Line1 (Home No., Flat NO., Housing Society)</string>
-    <string name="address_line2">Address Line1 (Locality)</string>
+    <string name="address_line2">Address Line2 (Locality)</string>
     <string name="pincode">Pincode</string>
     <string name="town_city">Town / City</string>
     <string name="state">State</string>
@@ -119,16 +119,35 @@
     <string name="house5">House5</string>
     <string name="description">Description</string>
     <string name="select_school">Select School</string>
+    <string name="select_house">Select House</string>
     <string name="more_school"><u>More than one School</u></string>
     <string name="more_house"><u>More than one House</u></string>
+    <string name="remove_house"><u>Remove House</u></string>
+    <string name="remove_school"><u>Remove School</u></string>
+    <string name="salutation">Salutation</string>
+    <string name="industry">Industry</string>
+    <string name="organisation">Organisation</string>
+    <string name="designation">Current Designation</string>
+    <string name="save_details">Save Details</string>
+    <string name="select_batch">Select Batch</string>
+    <string name="select_industry">Select Industry</string>
+    <string name="find">FIND ></string>
+    <string name="search_again">SEARCH AGAIN ></string>
+    <string name="searchText">Search</string>
+    <string name="invite_theading">SEND YOUR INVITE CODE</string>
+    <string name="invite_code">59106</string>
+    <string name="whatsapp_invite">Whatsapp Invite</string>
+    <string name="email_invite">Email Invite</string>
+    <string name="message_invite">Text Invite</string>
+    <string name="invite_tc">* Please Share only with legitimate Georgians.\n Sharing invitation codes with non-Georgians will lead to blacklisting.</string>
 
 
     <string-array name="school_name">
-        <item>School1</item>
-        <item>School2</item>
-        <item>School3</item>
-        <item>School4</item>
-        <item>School5</item>
+        <item>RMS Ajmer</item>
+        <item>RMS Banglore</item>
+        <item>RMS Belgaum</item>
+        <item>RMS Chail</item>
+        <item>RMS Dholpur</item>
     </string-array>
 
     <string-array name="house_name">
@@ -139,4 +158,192 @@
         <item>House5</item>
     </string-array>
 
+    <string-array name="industries_list">
+        <item>Accounting</item>
+        <item>Airlines/Aviation</item>
+        <item>Alternative Dispute Resolution</item>
+        <item>Alternative Medicine</item>
+        <item>Animation</item>
+        <item>Apparel &amp; Fashion</item>
+        <item>Architecture &amp; Planning</item>
+        <item>Arts &amp; Crafts</item>
+        <item>Automotive</item>
+        <item>Aviation &amp; Aerospace</item>
+        <item>Banking</item>
+        <item>Biotechnology</item>
+        <item>Broadcast Media</item>
+        <item>Building Materials</item>
+        <item>Business Supplies &amp; Equipment</item>
+        <item>Capital Markets</item>
+        <item>Chemicals</item>
+        <item>Civic &amp; Social Organization</item>
+        <item>Civil Engineering</item>
+        <item>Commercial Real Estate</item>
+        <item>Computer &amp; Network Security</item>
+        <item>Computer Games</item>
+        <item>Computer Hardware</item>
+        <item>Computer Networking</item>
+        <item>Computer Software</item>
+        <item>Construction</item>
+        <item>Consumer Electronics</item>
+        <item>Consumer Goods</item>
+        <item>Consumer Services</item>
+        <item>Cosmetics</item>
+        <item>Dairy</item>
+        <item>Defense &amp; Space</item>
+        <item>Design</item>
+        <item>Education Management</item>
+        <item>E-learning</item>
+        <item>Electrical &amp; Electronic Manufacturing</item>
+        <item>Entertainment</item>
+        <item>Environmental Services</item>
+        <item>Events Services</item>
+        <item>Executive Office</item>
+        <item>Facilities Services</item>
+        <item>Farming</item>
+        <item>Financial Services</item>
+        <item>Fine Art</item>
+        <item>Fishery</item>
+        <item>Food &amp; Beverages</item>
+        <item>Food Production</item>
+        <item>Fundraising</item>
+        <item>Furniture</item>
+        <item>Gambling &amp; Casinos</item>
+        <item>Glass, Ceramics &amp; Concrete</item>
+        <item>Government Administration</item>
+        <item>Government Relations</item>
+        <item>Graphic Design</item>
+        <item>Health, Wellness &amp; Fitness</item>
+        <item>Higher Education</item>
+        <item>Hospital &amp; Health Care</item>
+        <item>Hospitality</item>
+        <item>Human Resources</item>
+        <item>Import &amp; Export</item>
+        <item>Individual &amp; Family Services</item>
+        <item>Industrial Automation</item>
+        <item>Information Services</item>
+        <item>Information Technology &amp; Services</item>
+        <item>Insurance</item>
+        <item>International Affairs</item>
+        <item>International Trade &amp; Development</item>
+        <item>Internet</item>
+        <item>Investment Banking/Venture</item>
+        <item>Investment Management</item>
+        <item>Judiciary</item>
+        <item>Law Enforcement</item>
+        <item>Law Practice</item>
+        <item>Legal Services</item>
+        <item>Legislative Office</item>
+        <item>Leisure &amp; Travel</item>
+        <item>Libraries</item>
+        <item>Logistics &amp; Supply Chain</item>
+        <item>Luxury Goods &amp; Jewelry</item>
+        <item>Machinery</item>
+        <item>Management Consulting</item>
+        <item>Maritime</item>
+        <item>Marketing &amp; Advertising</item>
+        <item>Market Research</item>
+        <item>Mechanical or Industrial Engineering</item>
+        <item>Media Production</item>
+        <item>Medical Device</item>
+        <item>Medical Practice</item>
+        <item>Mental Health Care</item>
+        <item>Military</item>
+        <item>Mining &amp; Metals</item>
+        <item>Motion Pictures &amp; Film</item>
+        <item>Museums &amp; Institutions</item>
+        <item>Music</item>
+        <item>Nanotechnology</item>
+        <item>Newspapers</item>
+        <item>Nonprofit Organization Management</item>
+        <item>Oil &amp; Energy</item>
+        <item>Online Publishing</item>
+        <item>Outsourcing/Offshoring</item>
+        <item>Package/Freight Delivery</item>
+        <item>Packaging &amp; Containers</item>
+        <item>Paper &amp; Forest Products</item>
+        <item>Performing Arts</item>
+        <item>Pharmaceuticals</item>
+        <item>Philanthropy</item>
+        <item>Photography</item>
+        <item>Plastics</item>
+        <item>Political Organization</item>
+        <item>Primary/Secondary</item>
+        <item>Printing</item>
+        <item>Professional Training</item>
+        <item>Program Development</item>
+        <item>Public Policy</item>
+        <item>Public Relations</item>
+        <item>Public Safety</item>
+        <item>Publishing</item>
+        <item>Railroad Manufacture</item>
+        <item>Ranching</item>
+        <item>Real Estate</item>
+        <item>Recreational</item>
+        <item>Facilities &amp; Services</item>
+        <item>Religious Institutions</item>
+        <item>Renewables &amp; Environment</item>
+        <item>Research</item>
+        <item>Restaurants</item>
+        <item>Retail</item>
+        <item>Security &amp; Investigations</item>
+        <item>Semiconductors</item>
+        <item>Shipbuilding</item>
+        <item>Sporting Goods</item>
+        <item>Sports</item>
+        <item>Staffing &amp; Recruiting</item>
+        <item>Supermarkets</item>
+        <item>Telecommunications</item>
+        <item>Textiles</item>
+        <item>Think Tanks</item>
+        <item>Tobacco</item>
+        <item>Translation &amp; Localization</item>
+        <item>Transportation/Trucking/Railroad</item>
+        <item>Utilities</item>
+        <item>Venture Capital</item>
+        <item>Veterinary</item>
+        <item>Warehousing</item>
+        <item>Wholesale</item>
+        <item>Wine &amp; Spirits</item>
+        <item>Wireless</item>
+        <item> Writing &amp; Editing</item>
+    </string-array>
+    
+    <string-array name="salutation">
+        <item>Mr.</item>
+        <item>Mrs.</item>
+        <item>Miss</item>
+        <item>Dr.</item>
+        <item>Ms.</item>
+        <item>Prof.</item>
+        <item>Rev.</item>
+        <item>Lady</item>
+        <item>Sir</item>
+        <item>Capt.</item>
+        <item>Major</item>
+        <item>Lt.-Col.</item>
+        <item>Col.</item>
+        <item>Lady</item>
+        <item>Lt.-Cmdr.</item>
+        <item>The Hon.</item>
+        <item>Cmdr.</item>
+        <item>Flt. Lt.</item>
+        <item>Brgdr.</item>
+        <item>Judge</item>
+        <item>Lord</item>
+        <item>The Hon. Mrs</item>
+        <item>Wng. Cmdr.</item>
+        <item>Group Capt.</item>
+        <item>Rt. Hon. Lord</item>
+        <item>Revd. Father</item>
+        <item>Revd Canon</item>
+        <item>Maj.-Gen.</item>
+        <item>Air Cdre.</item>
+        <item>Viscount</item>
+        <item>Dame</item>
+        <item>Rear Admrl.</item>
+    </string-array>
+
+    <string name="ok">Yes, Update</string>
+    <string name="cancel">No, Cancel</string>
 </resources>

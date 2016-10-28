@@ -10,4 +10,6 @@ public class Constants {
     public static final int FRAGMENT_INFO = 1;
     public static final int FRAGMENT_SIGNUPLOGIN = 2;
     public static final int FRAGMENT_FORGOTPASSWORD = 3;
+    public static final String APP_PREF = "GEORGIAN_PREF";
+    public static final int FRAGMENT_USERBOARD = 5;
 }

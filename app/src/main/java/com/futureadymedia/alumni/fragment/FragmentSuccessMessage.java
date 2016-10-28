@@ -39,23 +39,10 @@ public class FragmentSuccessMessage extends BaseFragment implements View.OnClick
         setFont();
         setListener();
 
-        setHasOptionsMenu(true);
 
         return view;
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_search);
-        MenuItem item1=menu.findItem(R.id.action_settings);
-        MenuItem item2=menu.findItem(R.id.action_profile);
-        MenuItem item3=menu.findItem(R.id.action_logout);
-        item.setVisible(false);
-        item1.setVisible(false);
-        item2.setVisible(false);
-        item3.setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-    }
 
     @Override
     public void findId() {
