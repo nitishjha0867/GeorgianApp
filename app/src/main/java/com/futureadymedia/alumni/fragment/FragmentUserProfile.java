@@ -2,20 +2,17 @@ package com.futureadymedia.alumni.fragment;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.Layout;
+import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,26 +21,32 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.futureadymedia.alumni.R;
 import com.futureadymedia.alumni.activity.MainActivity;
-import com.futureadymedia.alumni.model.PersonalProfile;
 import com.futureadymedia.alumni.model.SignupModel;
 import com.futureadymedia.alumni.services.RequestURL;
 import com.futureadymedia.alumni.services.ServiceAsync;
 import com.futureadymedia.alumni.services.ServiceResponse;
 import com.futureadymedia.alumni.services.ServiceStatus;
-import com.futureadymedia.alumni.utils.Constants;
 import com.futureadymedia.alumni.utils.PrefsManager;
+import com.futureadymedia.alumni.utils.TextFont;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.android.camera.CropImageIntentBuilder;
+import com.vansuita.library.GaussianBlur;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,17 +56,17 @@ import java.util.TimerTask;
  */
 public class FragmentUserProfile extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    private View view;
+    private View view, viewEmail;
     private Context context;
-    private ImageButton btnUpload;
+    private ImageView btnUpload;
     private Button btnCurrentAddress, btnSchoolDetails, btnProffesionalDetails, btnSaveDetails;
     private static int RESULT_LOAD_IMG = 1;
     String imgDecodableString;
     private Uri filePath;
     private Bitmap bitmap;
-    private ImageView imageView;
+    private ImageView imageView, ivSchoolDetails;
     private SignupModel personalInfo;
-    private TextView tvName, tvEmail, tvMobile, tvEditEmail, tvEditMobile;
+    private TextView tvName, tvName1, tvEmail, tvEmail1, tvMobile, tvEditEmail, tvEditMobile, tvChangedpText, tvSaveDetails, tvSchoolDetails;
     private EditText etEmail, etMobile;
     private Switch switchEmail, switchMobile;
     private PrefsManager prefsManager;
@@ -72,6 +75,10 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
     private Boolean email_privacy = false, mobile_privacy = false;
     private ImageView ivDP;
     private static int REQUEST_CROP_PICTURE = 2;
+    private File croppedImageFile;
+    private LinearLayout llProfilePic;
+    private String Profile_pic;
+    private LinearLayout llSchoolDetails;
 
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -91,56 +98,82 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
         findId();
         setFont();
         setListener();
+
         setData();
+
+       // GaussianBlur.with(context).maxSixe(400).radius(25).put(R.drawable.dummy_image, llProfilePic);
+
+
+       // GaussianBlur.
+
 
         return view;
     }
 
     @Override
     public void findId() {
-        btnUpload = (ImageButton) view.findViewById(R.id.btnUpload);
-        btnCurrentAddress = (Button) view.findViewById(R.id.btnCurrentAddress);
+        //btnUpload = (TextView) view.findViewById(R.id.btnUpload);
+        /*btnCurrentAddress = (Button) view.findViewById(R.id.btnCurrentAddress);
         btnSchoolDetails = (Button) view.findViewById(R.id.btnSchoolDetails);
         btnProffesionalDetails = (Button) view.findViewById(R.id.btnProffesionalDetails);
-        btnSaveDetails = (Button) view.findViewById(R.id.btnSaveDetails);
+        btnSaveDetails = (Button) view.findViewById(R.id.btnSaveDetails);*/
 
+        tvChangedpText = (TextView)view.findViewById(R.id.tvChangedpText);
         tvEmail = (TextView)view.findViewById(R.id.tvEmail);
+        tvEmail1 = (TextView)view.findViewById(R.id.tvEmail1);
         tvMobile = (TextView)view.findViewById(R.id.tvMobile);
-        tvEditEmail = (TextView)view.findViewById(R.id.tvEditEmail);
-        tvEditMobile = (TextView)view.findViewById(R.id.tvEditMobile);
+        /*tvEditEmail = (TextView)view.findViewById(R.id.tvEditEmail);
+        tvEditMobile = (TextView)view.findViewById(R.id.tvEditMobile);*/
         tvName = (TextView)view.findViewById(R.id.tvName);
+        tvName1 = (TextView)view.findViewById(R.id.tvName1);
 
         etEmail = (EditText)view.findViewById(R.id.etEmail);
         etMobile = (EditText)view.findViewById(R.id.etMobile);
 
-        switchEmail = (Switch)view.findViewById(R.id.switchEmail);
-        switchMobile = (Switch)view.findViewById(R.id.switchMobile);
+        /*switchEmail = (Switch)view.findViewById(R.id.switchEmail);
+        switchMobile = (Switch)view.findViewById(R.id.switchMobile);*/
 
         ivDP = (ImageView)view.findViewById(R.id.ivDP);
+        llProfilePic = (LinearLayout) view.findViewById(R.id.llProfilePic);
+
+        viewEmail =  view.findViewById(R.id.viewEmail);
+
+        tvSaveDetails = (TextView)view.findViewById(R.id.tvSaveDetails);
+
+        llSchoolDetails = (LinearLayout)view.findViewById(R.id.llSchoolDetails);
+
+        ivSchoolDetails = (ImageView)view.findViewById(R.id.ivSchoolDetails);
+
+        tvSchoolDetails = (TextView)view.findViewById(R.id.tvSchoolDetails);
     }
 
     @Override
     public void setListener() {
-        btnUpload.setOnClickListener(this);
-        btnCurrentAddress.setOnClickListener(this);
+        ivDP.setOnClickListener(this);
+        /*btnCurrentAddress.setOnClickListener(this);
         btnSchoolDetails.setOnClickListener(this);
-        btnProffesionalDetails.setOnClickListener(this);
-        btnSaveDetails.setOnClickListener(this);
-        tvEditEmail.setOnClickListener(this);
-        tvEditMobile.setOnClickListener(this);
-        switchEmail.setOnCheckedChangeListener(this);
-        switchMobile.setOnCheckedChangeListener(this);
+        btnProffesionalDetails.setOnClickListener(this);*/
+        tvSaveDetails.setOnClickListener(this);
+        tvEmail.setOnClickListener(this);
+        tvMobile.setOnClickListener(this);
+        /*switchEmail.setOnCheckedChangeListener(this);
+        switchMobile.setOnCheckedChangeListener(this);*/
+        llSchoolDetails.setOnClickListener(this);
     }
 
     @Override
     public void setFont() {
-
+        tvChangedpText.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvName.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvName1.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvEmail.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvEmail1.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnUpload:
+            case R.id.ivDP:
                 Log.e("Image", "btnclicked");
                 Intent intent = new Intent();
                 intent.setType("image/*");
@@ -160,18 +193,25 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
                 ((MainActivity) context).onFragmentChange(11);
                 break;
 
-            case R.id.btnSaveDetails:
+            case R.id.tvSaveDetails:
                 uploadData();
                 break;
 
-            case R.id.tvEditEmail:
+            case R.id.tvEmail:
                 tvEmail.setVisibility(View.GONE);
                 etEmail.setVisibility(View.VISIBLE);
+                viewEmail.setVisibility(View.GONE);
                 break;
 
-            case R.id.tvEditMobile:
+            case R.id.tvMobile:
                 tvMobile.setVisibility(View.GONE);
                 etMobile.setVisibility(View.VISIBLE);
+                break;
+
+            case R.id.llSchoolDetails:
+                llSchoolDetails.setBackgroundResource(R.drawable.profile_square_filled);
+                ivSchoolDetails.setImageResource(R.drawable.dashboard_school_white);
+                tvSchoolDetails.setTextColor(ContextCompat.getColor(context, R.color.white));
                 break;
 
            /* case R.id.switchEmail:
@@ -215,12 +255,15 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
                 if(servicesResponse.status.equals("success"))
                 {
                     tvEmail.setText(servicesResponse.email);
+                    tvEmail1.setText(servicesResponse.email);
                     etEmail.setText(servicesResponse.email);
                     tvMobile.setText(servicesResponse.mobile);
                     etMobile.setText(servicesResponse.mobile);
-                    tvName.setText(servicesResponse.full_name);
-                    switchMobile.setChecked(servicesResponse.mobile_privacy);
-                    switchEmail.setChecked(servicesResponse.email_privacy);
+                    tvName.setText(toTitleCase(servicesResponse.full_name));
+                    tvName1.setText(toTitleCase(servicesResponse.full_name));
+                   /* switchMobile.setChecked(servicesResponse.mobile_privacy);
+                    switchEmail.setChecked(servicesResponse.email_privacy);*/
+                   loadImageFromStorage("/data/data/com.futureadymedia.alumni/app_imageDir", servicesResponse.profile_pic);
                 }
                 else
                 {
@@ -238,12 +281,20 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
     }
 
     public void uploadData() {
+        try {
+            Profile_pic = getStringImage(BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath()));
+        } catch (Exception e) {
+        }
+
+
+
         personalInfo = new SignupModel();
         personalInfo.fullname = tvName.getText().toString();
         personalInfo.email = etEmail.getText().toString();
         personalInfo.mobile = etMobile.getText().toString();
         personalInfo.email_privacy = email_privacy;
         personalInfo.mobile_privacy = mobile_privacy;
+        personalInfo.profile_pic = Profile_pic;
         personalInfo.user_id = prefsManager.getUserId();
         Gson gson = new Gson();
         final String request = gson.toJson(personalInfo);
@@ -257,6 +308,10 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
         confirmation.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
+                byte[] decodedString = Base64.decode(Profile_pic, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                //ivDP.setImageBitmap(decodedByte);
+                Log.e("ACTUAL PATH", saveToInternalStorage(decodedByte));
                 alertdialog.dismiss();
                 ServiceAsync serviceAsync = new ServiceAsync(context, request, url, RequestURL.POST, new ServiceStatus() {
                     @Override
@@ -269,6 +324,14 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
                             etMobile.setVisibility(View.GONE);
                             tvEmail.setVisibility(View.VISIBLE);
                             tvMobile.setVisibility(View.VISIBLE);
+                            viewEmail.setVisibility(View.VISIBLE);
+                            //setData();
+                            tvName.setText(servicesResponse.full_name);
+                            tvName1.setText(servicesResponse.full_name);
+                            tvEmail.setText(servicesResponse.email);
+                            tvEmail1.setText(servicesResponse.email);
+                            tvMobile.setText(servicesResponse.mobile);
+                            loadImageFromStorage("/data/data/com.futureadymedia.alumni/app_imageDir", servicesResponse.profile_pic);
                             final Timer timer2 = new Timer();
                             timer2.schedule(new TimerTask() {
                                 public void run() {
@@ -283,6 +346,7 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
                             etMobile.setVisibility(View.GONE);
                             tvEmail.setVisibility(View.VISIBLE);
                             tvMobile.setVisibility(View.VISIBLE);
+                            viewEmail.setVisibility(View.VISIBLE);
                             final Timer timer2 = new Timer();
                             timer2.schedule(new TimerTask() {
                                 public void run() {
@@ -318,11 +382,61 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
     }
 
 
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(context);
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,"profile.jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
+    }
+
+    private void loadImageFromStorage(String path, String db_profile_pic)
+    {
+
+        try {
+            File f=new File(path, "profile.jpg");
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            Bitmap catBitmap = GaussianBlur.with(context).radius(25).noScaleDown(false).render(b);
+            llProfilePic.setBackground(new BitmapDrawable(context.getResources(), catBitmap));
+            ivDP.setImageBitmap(b);
+            Profile_pic = getStringImage(b);
+        }
+        catch (FileNotFoundException e)
+        {
+           // e.printStackTrace();
+            String db_val_profile_pic = db_profile_pic;
+            Profile_pic = db_profile_pic;
+            byte[] decodedString = Base64.decode(db_val_profile_pic, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            Bitmap catBitmap = GaussianBlur.with(context).radius(25).noScaleDown(false).render(decodedByte);
+            llProfilePic.setBackground(new BitmapDrawable(context.getResources(), catBitmap));
+            ivDP.setImageBitmap(decodedByte);
+        }
+
+    }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        File croppedImageFile = new File(context.getFilesDir(), "test.jpg");
+        croppedImageFile = new File(context.getFilesDir(), "test.jpg");
         Log.e("Inside", "activity result");
         if (requestCode == RESULT_LOAD_IMG  && resultCode == MainActivity.RESULT_OK && data != null && data.getData() != null) {
             /*Log.e("Inside", "IF");
@@ -336,7 +450,6 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
                 e.printStackTrace();
             }*/
             Uri croppedImage = Uri.fromFile(croppedImageFile);
-
             CropImageIntentBuilder cropImage = new CropImageIntentBuilder(200, 200, croppedImage);
             cropImage.setOutlineColor(0xFF03A9F4);
             cropImage.setSourceImage(data.getData());
@@ -348,6 +461,8 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
             Log.e("Image path", ""+croppedImageFile.getAbsolutePath());
             Log.e("Image bitmap decoded", ""+BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath()));
             ivDP.setImageBitmap(BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath()));
+            Bitmap catBitmap = GaussianBlur.with(context).radius(25).noScaleDown(false).render(BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath()));
+            llProfilePic.setBackground(new BitmapDrawable(context.getResources(), catBitmap));
         }
     }
 
@@ -423,4 +538,22 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
         }
 
     }*/
+
+    public static String toTitleCase(String input) {
+        StringBuilder titleCase = new StringBuilder();
+        boolean nextTitleCase = true;
+
+        for (char c : input.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            }
+
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
 }

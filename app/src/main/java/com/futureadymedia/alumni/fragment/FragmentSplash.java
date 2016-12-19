@@ -1,36 +1,35 @@
 package com.futureadymedia.alumni.fragment;
 
-import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import com.futureadymedia.alumni.R;
-import com.futureadymedia.alumni.activity.MainActivity;
-import com.futureadymedia.alumni.adapter.NavigationDrawerAdapter;
-import com.futureadymedia.alumni.utils.CommonUtils;
-import com.futureadymedia.alumni.utils.DrawerLocker;
+import com.futureadymedia.alumni.adapter.MyFragmentPagerAdapter;
+import com.futureadymedia.alumni.adapter.MyPagerAdapter;
+import com.futureadymedia.alumni.widgets.NonSwipeableViewPager;
+import com.futureadymedia.alumni.widgets.SwipeableViewPager;
 
 /**
- * Created by developer on 9/14/2016.
+ * Created by developer on 11/7/2016.
  */
-public class FragmentSplash extends BaseFragment implements View.OnClickListener {
+public class FragmentSplash extends BaseFragment implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
     Context context;
-    DrawerLayout drawerLayout;
     View view;
-    Button enterButton;
+    private SwipeableViewPager SwipeableViewPager;
+    private MyFragmentPagerAdapter adapterViewPager;
+    private int loadingPos = 0;
+    public static ImageView ivArrow, ivActive1, ivActive2, ivActive3, ivActive4, ivActive5;
 
     @Override
     public void onAttach(Context context) {
@@ -38,72 +37,43 @@ public class FragmentSplash extends BaseFragment implements View.OnClickListener
         this.context = context;
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = LayoutInflater.from(context).inflate(R.layout.fragment_splash, null);
-
-       /* drawerLayout = (DrawerLayout) this.getActivity().findViewById(R.id.drawer_layout);
-
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);*/
-
-        /****** Create Thread that will sleep for 5 seconds *************/
-        /*Thread background = new Thread() {
-            public void run() {
-
-                try {
-                    // Thread will sleep for 5 seconds
-                    sleep(5*1000);
-
-                    // After 5 seconds redirect to another intent
-                  /*  MapViewFragment fragment2 = new MapViewFragment();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment1, fragment2);
-                    fragmentTransaction.commit();*/
-
-                   /* CommonUtils.setFragment(new MapViewFragment(), false, getActivity(), MainActivity.flContainer, "splash");
-
-                    //Remove activity
-                   // finish();
-
-                } catch (Exception e) {
-
-                }
-            }
-        };
-        background.start();*/
-        //((DrawerLocker) context).setDrawerEnabled(false);
+        view = LayoutInflater.from(context).inflate(R.layout.fragment_splash_pager, null);
 
         findId();
-        setFont();
         setListener();
+        setFont();
 
-        //setHasOptionsMenu(true);
+        SwipeableViewPager.addOnPageChangeListener(this);
+        SwipeableViewPager.setOffscreenPageLimit(5);
+        adapterViewPager = new MyFragmentPagerAdapter(getChildFragmentManager());
+        SwipeableViewPager.setAdapter(adapterViewPager);
+        SwipeableViewPager.setCurrentItem(0);
+        SwipeableViewPager.setPagingEnabled(true);
 
+
+       // ActiveTab(0);
         return view;
     }
 
-
-
-   /* @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        MenuItem item=menu.findItem(R.id.action_search);
-        MenuItem item1=menu.findItem(R.id.action_settings);
-        item.setVisible(false);
-        item1.setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-    }*/
-
     @Override
     public void findId() {
-        enterButton = (Button)view.findViewById(R.id.enterButton);
+        SwipeableViewPager = (SwipeableViewPager) view.findViewById(R.id.pager);
+        ivArrow = (ImageView) view.findViewById(R.id.ivArrow);
+        ivActive1 = (ImageView) view.findViewById(R.id.ivActive1);
+        ivActive2 = (ImageView) view.findViewById(R.id.ivActive2);
+        ivActive3 = (ImageView) view.findViewById(R.id.ivActive3);
+        ivActive4 = (ImageView) view.findViewById(R.id.ivActive4);
+        ivActive5 = (ImageView) view.findViewById(R.id.ivActive5);
     }
 
     @Override
     public void setListener() {
-        enterButton.setOnClickListener(this);
+        ivArrow.setOnClickListener(this);
     }
 
     @Override
@@ -113,28 +83,74 @@ public class FragmentSplash extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.enterButton:
-                ((MainActivity) context).onFragmentChange(1);
+        switch (v.getId())
+        {
+            case R.id.ivArrow:
+                if(loadingPos<4)
+                {
+                    SwipeableViewPager.setCurrentItem((loadingPos+1), true);
+                }
+                else
+                {
+                    SwipeableViewPager.setCurrentItem((0), true);
+                }
+
+            break;
+        }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.e("page selected", ""+position);
+        loadingPos = position;
+        ivActive1.setImageResource(R.drawable.nav_dot_grey);
+        ivActive2.setImageResource(R.drawable.nav_dot_grey);
+        ivActive3.setImageResource(R.drawable.nav_dot_grey);
+        ivActive4.setImageResource(R.drawable.nav_dot_grey);
+        ivActive5.setImageResource(R.drawable.nav_dot_grey);
+        ivArrow.setImageResource(R.drawable.arrow_2_blue);
+        switch (position)
+        {
+            case 0:
+                ivArrow.setImageResource(R.drawable.arrow_2);
+                ivActive1.setImageResource(R.drawable.nav_dot_white);
+                break;
+
+            case 1:
+                ivActive2.setImageResource(R.drawable.nav_dot_blue);
+                break;
+
+            case 2:
+                ivActive3.setImageResource(R.drawable.nav_dot_blue);
+                break;
+
+            case 3:
+                ivActive4.setImageResource(R.drawable.nav_dot_blue);
+                break;
+
+            case 4:
+                ivActive5.setImageResource(R.drawable.nav_dot_blue);
                 break;
         }
     }
 
     @Override
-    public void onResume(){
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onResume() {
         super.onResume();
-        MainActivity.setTitle("Welcome");
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
-        Log.e("SPLASH", "inside pause");
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        Log.e("SPLASH", "inside start");
     }
 }

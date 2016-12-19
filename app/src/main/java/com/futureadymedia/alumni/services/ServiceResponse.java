@@ -36,4 +36,7 @@ public class ServiceResponse {
 	public String from5;
 	public String to5;
 	public String roll5;
+	public String[] school_name;
+	public String[] house_name;
+	public String profile_pic;
 }

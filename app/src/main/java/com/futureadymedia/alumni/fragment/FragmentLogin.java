@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.futureadymedia.alumni.services.ServiceStatus;
 import com.futureadymedia.alumni.utils.CommonUtils;
 import com.futureadymedia.alumni.utils.Constants;
 import com.futureadymedia.alumni.utils.PrefsManager;
+import com.futureadymedia.alumni.utils.TextFont;
 import com.google.gson.Gson;
 
 /**
@@ -39,12 +41,12 @@ public class FragmentLogin extends BaseFragment implements View.OnClickListener,
 
     private Context context;
     private View view;
-    private TextView tvClickhere;
-    private Button btnLoginSubmit;
+    private TextView tvClickhere, tvLoginBtn, tvForgot;
     private EditText etEmailLogin, etPasswordLogin;
     private TextInputLayout etEmailLogin_layout, etPasswordLogin_layout;
     private PrefsManager prefsManager;
     private LoginModel loginModel;
+    private LinearLayout llLogin;
 
     public void onAttach(Context context){
         super.onAttach(context);
@@ -67,21 +69,31 @@ public class FragmentLogin extends BaseFragment implements View.OnClickListener,
     @Override
     public void findId() {
         tvClickhere = (TextView) view.findViewById(R.id.tvClickhere);
-        btnLoginSubmit = (Button) view.findViewById(R.id.btnLoginSubmit);
         etEmailLogin = (EditText) view.findViewById(R.id.etEmailLogin);
         etPasswordLogin = (EditText) view.findViewById(R.id.etPasswordLogin);
         etEmailLogin_layout = (TextInputLayout) view.findViewById(R.id.etEmailLogin_layout);
         etPasswordLogin_layout = (TextInputLayout) view.findViewById(R.id.etPasswordLogin_layout);
+        llLogin = (LinearLayout) view.findViewById(R.id.llLogin);
+        tvLoginBtn = (TextView) view.findViewById(R.id.tvLoginBtn);
+        tvForgot = (TextView) view.findViewById(R.id.tvForgot);
     }
 
     @Override
     public void setListener() {
         tvClickhere.setOnClickListener(this);
-        btnLoginSubmit.setOnClickListener(this);
+        tvForgot.setOnClickListener(this);
+        llLogin.setOnClickListener(this);
     }
 
     @Override
     public void setFont() {
+        tvClickhere.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etEmailLogin.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etPasswordLogin.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvLoginBtn.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvForgot.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etEmailLogin_layout.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etPasswordLogin_layout.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
 
     }
 
@@ -95,12 +107,17 @@ public class FragmentLogin extends BaseFragment implements View.OnClickListener,
         switch(v.getId())
         {
             case R.id.tvClickhere:
+            case R.id.tvForgot:
                 ((MainActivity) context).onFragmentChange(3);
                 break;
 
-            case R.id.btnLoginSubmit:
+            case R.id.llLogin:
                 if(LoginValidation()){
                     Login();
+                }
+                else
+                {
+                    Toast.makeText(context, "Kindly Enter your Email and password", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -112,11 +129,11 @@ public class FragmentLogin extends BaseFragment implements View.OnClickListener,
             etEmailLogin_layout.setError("Please enter email.");
             status = false;
         }else if (!TextUtils.isEmpty(etEmailLogin.getText().toString().trim()) && !CommonUtils.isValidEmail(etEmailLogin.getText().toString().trim())){
-            etEmailLogin_layout.setError("Please enter valid email.");
+            //etEmailLogin_layout.setError("Please enter valid email.");
             status = false;
         }
         if(TextUtils.isEmpty(etPasswordLogin.getText().toString().trim())){
-            etPasswordLogin_layout.setError("Please Enter Password");
+           // etPasswordLogin_layout.setError("Please Enter Password");
             status = false;
         }
 
@@ -148,7 +165,7 @@ public class FragmentLogin extends BaseFragment implements View.OnClickListener,
                 }
                 else
                 {
-
+                    Toast.makeText(context, "Wrong Credentials\nTry again", Toast.LENGTH_LONG).show();
                 }
             }
 

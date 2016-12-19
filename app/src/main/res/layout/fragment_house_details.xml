@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/size30"
+        android:layout_marginTop="@dimen/size10"
+        android:layout_marginRight="@dimen/size30"
+        android:layout_marginBottom="@dimen/size30"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/size10"
+            android:layout_weight="0.35">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/house_logo"
+                android:layout_marginBottom="@dimen/size15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="House Details"
+                android:textColor="@color/black"
+                android:id="@+id/tvHouseDetails"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSelectHouse"
+                android:text="Select House"
+                android:layout_marginTop="@dimen/size15"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="0.05">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shadow"/>
+            </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/scrollView6"
+            android:fadeScrollbars="false"
+            android:layout_weight="0.4"
+            android:layout_marginLeft="@dimen/size25"
+            android:layout_marginRight="@dimen/size25">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:id="@+id/checkGroup">
+
+                <!--<LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ll_check1">
+
+                    <CheckBox android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="20dp"
+                        android:textColor="#333333"
+                        android:id="@+id/checkHouse1"
+                        android:text="Option 1"
+                        android:textSize="@dimen/size20"
+                        android:button="@null"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkHouse1_img"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ll_check2">
+
+                    <CheckBox android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="20dp"
+                        android:textColor="#333333"
+                        android:id="@+id/checkHouse2"
+                        android:text="Option 1"
+                        android:textSize="@dimen/size20"
+                        android:button="@null"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkHouse2_img"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ll_check3">
+
+                    <CheckBox android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="20dp"
+                        android:textColor="#333333"
+                        android:id="@+id/checkHouse3"
+                        android:text="Option 1"
+                        android:textSize="@dimen/size20"
+                        android:button="@null"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkHouse3_img"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ll_check4">
+
+                    <CheckBox android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="20dp"
+                        android:textColor="#333333"
+                        android:id="@+id/checkHouse4"
+                        android:text="Option 1"
+                        android:textSize="@dimen/size20"
+                        android:button="@null"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkHouse4_img"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ll_check5">
+
+                    <CheckBox android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="20dp"
+                        android:textColor="#333333"
+                        android:id="@+id/checkHouse5"
+                        android:text="Option 1"
+                        android:textSize="@dimen/size20"
+                        android:button="@null"
+                        android:layout_weight="0.8"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkHouse5_img"
+                        android:layout_weight="0.2" />
+                </LinearLayout>-->
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+
+            <View android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_marginBottom="@dimen/size10"
+                android:background="@drawable/dark_seperator"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSaveHouse"
+                android:text="SAVE"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size20"
+                android:background="@drawable/button_shape"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

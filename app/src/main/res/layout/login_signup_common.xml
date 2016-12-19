@@ -21,24 +21,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/size20"
+            android:paddingLeft="@dimen/size20"
+            android:paddingRight="@dimen/size20"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/border"
+                android:background="@drawable/tab_left"
                 android:layout_weight="0.5"
                 android:id="@+id/linearSignup"
-                android:layout_gravity="center_horizontal">
+                android:gravity="center_horizontal">
 
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gc_blue"
                     android:id="@+id/tvSignup"
                     android:text="Signup"
+                    android:textSize="@dimen/size15"
+                    android:drawableLeft="@drawable/singnup_blue"
+                    android:drawablePadding="@dimen/size10"
                     android:gravity="center_horizontal"
                     android:paddingTop="@dimen/size10"
                     android:paddingBottom="@dimen/size10" />
@@ -48,18 +53,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/border"
+                android:background="@drawable/tab_right"
                 android:gravity="center_horizontal"
                 android:layout_weight="0.5"
                 android:id="@+id/linearLogin">
 
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gc_blue"
                     android:id="@+id/tvLogin"
                     android:text="Login"
+                    android:textSize="@dimen/size15"
+                    android:drawableLeft="@drawable/login_blue"
+                    android:drawablePadding="@dimen/size10"
                     android:paddingTop="@dimen/size10"
                     android:paddingBottom="@dimen/size10"
                     android:gravity="center_horizontal" />

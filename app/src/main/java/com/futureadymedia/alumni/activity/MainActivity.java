@@ -2,10 +2,13 @@ package com.futureadymedia.alumni.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.GravityCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -23,6 +28,7 @@ import com.futureadymedia.alumni.fragment.FragmentDirectoryListing;
 import com.futureadymedia.alumni.fragment.FragmentDrawer;
 import com.futureadymedia.alumni.fragment.FragmentForgotpassword;
 import com.futureadymedia.alumni.fragment.FragmentGeorgiansNearby;
+import com.futureadymedia.alumni.fragment.FragmentHouseDetails;
 import com.futureadymedia.alumni.fragment.FragmentHouseMates;
 import com.futureadymedia.alumni.fragment.FragmentInfo;
 import com.futureadymedia.alumni.fragment.FragmentErrorMessage;
@@ -30,11 +36,11 @@ import com.futureadymedia.alumni.fragment.FragmentProffesionalDetails;
 import com.futureadymedia.alumni.fragment.FragmentProffesionalResult;
 import com.futureadymedia.alumni.fragment.FragmentProffesionalsToKnow;
 import com.futureadymedia.alumni.fragment.FragmentSchoolDetails;
-import com.futureadymedia.alumni.fragment.FragmentSchoolDetails1;
 import com.futureadymedia.alumni.fragment.FragmentSchoolMates;
 import com.futureadymedia.alumni.fragment.FragmentSendInvite;
 import com.futureadymedia.alumni.fragment.FragmentSignupLogin;
 import com.futureadymedia.alumni.fragment.FragmentSplash;
+import com.futureadymedia.alumni.fragment.FragmentSplash1;
 import com.futureadymedia.alumni.fragment.FragmentSuccessMessage;
 import com.futureadymedia.alumni.fragment.FragmentUserDashboard;
 import com.futureadymedia.alumni.fragment.FragmentUserProfile;
@@ -49,7 +55,7 @@ import com.futureadymedia.alumni.utils.PrefsManager;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, DrawerLayout.DrawerListener, FragmentChangeListener, FragmentManager.OnBackStackChangedListener, DrawerLocker {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener, DrawerLayout.DrawerListener, FragmentChangeListener, FragmentManager.OnBackStackChangedListener {
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -69,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+       /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_main);
         context = MainActivity.this;
         prefsManager = new PrefsManager(context);
@@ -82,12 +91,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         title = getString(R.string.app_name);
 
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        tvTitle = (TextView)mToolbar.findViewById(R.id.tvTitle);
+        // tvTitle = (TextView)mToolbar.findViewById(R.id.tvTitle);
 
 
-        setSupportActionBar(mToolbar);
+       setSupportActionBar(mToolbar);
 
+        //getSupportActionBar().setHomeButtonEnabled(true);
+       /* getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);*/
 
         toggleEnable();
 
@@ -97,14 +110,26 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         if(prefsManager.getUserId().length() != 0)
         {
-            ((DrawerLocker) context).setDrawerEnabled(true);
-
-            position = 6;
-
+           // ((DrawerLocker) context).setDrawerEnabled(true);
+            FragmentDrawer.mDrawerToggle.setDrawerIndicatorEnabled(false);
+            Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.menu, this.getTheme());
+            FragmentDrawer.mDrawerToggle.setHomeAsUpIndicator(drawable);
+            FragmentDrawer.mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (FragmentDrawer.mDrawerLayout.isDrawerVisible(GravityCompat.START)) {
+                        FragmentDrawer.mDrawerLayout.closeDrawer(GravityCompat.START);
+                    } else {
+                        FragmentDrawer.mDrawerLayout.openDrawer(GravityCompat.START);
+                    }
+                }
+            });
+            position = 8;
         }
         else
         {
-            ((DrawerLocker) context).setDrawerEnabled(false);
+           // ((DrawerLocker) context).setDrawerEnabled(false);
+            getSupportActionBar().hide();
         }
         setLoadingFragment(position, null);
 
@@ -119,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public boolean onCreateOptionsMenu(Menu menu) {
         if(prefsManager.getUserId().length() != 0) {
             // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.menu_main, menu);
+           getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
         }
         else
@@ -189,6 +214,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 setLoadingFragment(15, view);
                 break;
 
+            case 6:
+                setLoadingFragment(20, view);
+                break;
+
             case 7:
                 setLoadingFragment(19, view);
                 break;
@@ -246,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_messages);*/
                 title = "GEORGIAN CONNECT";
                 fragment = new FragmentUserDashboard();
-                ((DrawerLocker) context).setDrawerEnabled(true);
+                //((DrawerLocker) context).setDrawerEnabled(true);
                 CommonUtils.setFragment(fragment, true, MainActivity.this, flContainer, "dashboardfragment", title);
                 break;
 
@@ -333,6 +362,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 CommonUtils.setFragment(fragment, false, MainActivity.this, flContainer, "sendinvite", title);
                 break;
 
+            case 20:
+                fragment = new FragmentHouseDetails();
+                CommonUtils.setFragment(fragment, false, MainActivity.this, flContainer, "housedetails", title);
+                break;
+
             default:
                 break;
         }
@@ -344,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         switch (position) {
 
             case 0:
-                fragment = new FragmentSplash();
+                fragment = new FragmentSplash1();
                 // Log.e("Nav click", "Case"+position);
                 break;
 
@@ -466,17 +500,19 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         });
     }
 
-    @Override
+  /*  @Override
     public void setDrawerEnabled(boolean enabled) {
         int lockMode = enabled ? DrawerLayout.LOCK_MODE_UNLOCKED :
                 DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
         FragmentDrawer.mDrawerLayout.setDrawerLockMode(lockMode);
-        FragmentDrawer.mDrawerToggle.setDrawerIndicatorEnabled(enabled);
+        FragmentDrawer.mDrawerToggle.setDrawerIndicatorEnabled(false);
+        mToolbar.setNavigationIcon(R.drawable.menu);
+        FragmentDrawer.mDrawerToggle.setDrawerIndicatorEnabled(true);
         FragmentDrawer.mDrawerToggle.syncState();
-    }
+    }*/
 
     public static void setTitle(String title){
-        tvTitle.setText(title);
+      //  tvTitle.setText(title);
     }
 
     @Override

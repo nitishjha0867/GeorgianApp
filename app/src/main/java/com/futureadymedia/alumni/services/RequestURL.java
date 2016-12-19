@@ -37,5 +37,7 @@ public class RequestURL {
     public static final String GET_PERSONAL_DATA = BASE_URL.trim()+"fetch_personal_info.php";
     public static final String UPDATE_SCHOOL_DATA = BASE_URL.trim()+"update_school_data.php";
     public static final String GET_SCHOOL_DATA = BASE_URL.trim()+"fetch_school_data.php";
+    public static final String GET_HOUSE_DATA = BASE_URL.trim()+"fetch_house_data.php";
+    public static final String UPDATE_HOUSE_DATA = BASE_URL.trim()+"update_house_data.php";
 
 }

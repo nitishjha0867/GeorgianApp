@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.futureadymedia.alumni.widgets.SwipeableViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal">
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivArrow"
+            android:padding="@dimen/size25"
+            android:src="@drawable/arrow_2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="60dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size5"
+            android:layout_marginLeft="@dimen/size5"
+            android:id="@+id/ivActive1"
+            android:src="@drawable/nav_dot_white"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size5"
+            android:layout_marginLeft="@dimen/size5"
+            android:id="@+id/ivActive2"
+            android:src="@drawable/nav_dot_grey"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size5"
+            android:layout_marginLeft="@dimen/size5"
+            android:id="@+id/ivActive3"
+            android:src="@drawable/nav_dot_grey"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size5"
+            android:layout_marginLeft="@dimen/size5"
+            android:id="@+id/ivActive4"
+            android:src="@drawable/nav_dot_grey"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size5"
+            android:layout_marginLeft="@dimen/size5"
+            android:id="@+id/ivActive5"
+            android:src="@drawable/nav_dot_grey"/>
+    </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

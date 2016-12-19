@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/size25"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical|right"
+        android:paddingRight="@dimen/size25">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:paddingRight="@dimen/size25"
+        android:paddingLeft="@dimen/size25"
+        android:gravity="center_vertical|center_horizontal">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size20"
+            android:layout_marginBottom="@dimen/size20"
+            android:text="@string/atyour_fingertips"
+            android:id="@+id/tvFingertips"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:src="@drawable/splash_2" />
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvBond"
+            android:text="@string/georgian_nearby"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/size17"
+            android:layout_marginTop="@dimen/size20"
+            android:textColor="@color/grey"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/llSignup"
+            android:background="@drawable/button_shape">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSignup"
+                android:background="@color/transparent"
+                android:text="@string/signup"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size20"
+                android:drawableLeft="@drawable/singup_white"
+                android:paddingTop="@dimen/size15"
+                android:paddingBottom="@dimen/size15"
+                android:drawablePadding="@dimen/size10"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/size30"
+            android:paddingRight="@dimen/size30"
+            android:paddingTop="@dimen/size10"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTcText"
+                android:text="@string/terms_con"
+                android:textSize="@dimen/size10"
+                android:gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTcLinkText"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/size10"
+                android:textColor="@color/gc_blue"
+                android:text="Terms &amp; Conditions"/>
+        </LinearLayout>
+      <!-- <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/btnSaveHouse"
+            android:text="@string/signup"
+            android:textColor="@color/white"
+            android:drawableStart="@drawable/singup_white"
+            android:textSize="@dimen/size20"
+            android:padding="@dimen/size15"
+            android:background="@drawable/button_shape"
+            />-->
+
+    </LinearLayout>
+</LinearLayout>

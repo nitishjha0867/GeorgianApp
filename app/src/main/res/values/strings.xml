@@ -18,6 +18,7 @@
     <string name="nav_item_directory">Directory</string>
     <string name="nav_item_newsevents">News &amp; Events</string>
     <string name="nav_item_invite">Invite Others</string>
+    <string name="welcome">Welcome!</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
@@ -66,7 +67,7 @@
     <string name="password_limit">Password (Max 8 char)</string>
     <string name="show_password">Show Password</string>
     <string name="intro_code">Introduction Code</string>
-    <string name="submit">SUBMIT ></string>
+    <string name="submit">SUBMIT</string>
     <string name="forgot_password">Forgot Password ?</string>
     <string name="click_here"><u>Click Here</u></string>
 
@@ -75,12 +76,13 @@
     <string name="splash_text">A bond beyond time</string>
     <string name="splash_button">ENTER ></string>
     <string name="app_info">Get connected instantly to ex-Georgians across the globe.</string>
+    <string name="app_info1">ex-Georgians across the globe.</string>
     <string name="atyour_fingertips">At your fingertips : </string>
     <string name="georgian_nearby">Georgian Nearby</string>
     <string name="proffesionals_to_know">Proffesioinals to Know</string>
     <string name="batchmates">Batchmates</string>
     <string name="more">&amp; \n More</string>
-    <string name="signup">SIGN UP ></string>
+    <string name="signup">SIGN UP</string>
     <string name="terms_con">By Tapping "Sign Up" above you are agreeing to the</string>
     <string name="loading">Loading</string>
     <string name="success">SUCCESS !</string>
@@ -90,7 +92,7 @@
     <string name="verification_code">Enter the verification code</string>
     <string name="tc_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</string>
     <string name="incomplete_profile">Your profile is incomplete please fill in the details below.</string>
-    <string name="school_details">SCHOOL DETAILS ></string>
+    <string name="school_details">SCHOOL DETAILS</string>
     <string name="current_address">CURRENT ADDRESS ></string>
     <string name="proffesional_details">PROFFESIONAL DETAILS ></string>
     <string name="address_line1">Address Line1 (Home No., Flat NO., Housing Society)</string>
@@ -102,6 +104,7 @@
     <string name="work">Work</string>
     <string name="home">Home</string>
     <string name="save_address">SAVE ADDRESS ></string>
+    <string name="get_connected_instantly">Get connected instantly</string>
 
     <string name="rollno">Roll No.</string>
     <string name="edit">Edit</string>
@@ -140,7 +143,7 @@
     <string name="email_invite">Email Invite</string>
     <string name="message_invite">Text Invite</string>
     <string name="invite_tc">* Please Share only with legitimate Georgians.\n Sharing invitation codes with non-Georgians will lead to blacklisting.</string>
-
+    <string name="change_profile_pic">Change Profile Picture</string>
 
     <string-array name="school_name">
         <item>RMS Ajmer</item>
@@ -150,12 +153,44 @@
         <item>RMS Dholpur</item>
     </string-array>
 
-    <string-array name="house_name">
+    <string-array name="house_ajmer">
         <item>House1</item>
         <item>House2</item>
         <item>House3</item>
         <item>House4</item>
         <item>House5</item>
+    </string-array>
+
+    <string-array name="house_banglore">
+        <item>House6</item>
+        <item>House7</item>
+        <item>House8</item>
+        <item>House9</item>
+        <item>House10</item>
+    </string-array>
+
+    <string-array name="house_belgaum">
+        <item>House11</item>
+        <item>House12</item>
+        <item>House13</item>
+        <item>House14</item>
+        <item>House15</item>
+    </string-array>
+
+    <string-array name="house_chail">
+        <item>House16</item>
+        <item>House17</item>
+        <item>House18</item>
+        <item>House19</item>
+        <item>House20</item>
+    </string-array>
+
+    <string-array name="house_dholpur">
+        <item>House21</item>
+        <item>House22</item>
+        <item>House23</item>
+        <item>House24</item>
+        <item>House25</item>
     </string-array>
 
     <string-array name="industries_list">

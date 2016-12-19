@@ -40,7 +40,7 @@ public class FragmentProffesionalsToKnow extends BaseFragment implements View.On
 
         setSpinner(spinnerIndustry, R.array.industries_list);
         setSpinner(spinnerSchool, R.array.school_name);
-        setSpinner(spinnerHouse, R.array.house_name);
+        //setSpinner(spinnerHouse, R.array.house_name);
         setYearSpinner(spinnerBatch);
 
         return view;

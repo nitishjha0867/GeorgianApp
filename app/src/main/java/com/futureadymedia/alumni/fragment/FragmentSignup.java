@@ -15,6 +15,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.futureadymedia.alumni.R;
@@ -27,6 +29,7 @@ import com.futureadymedia.alumni.services.ServiceStatus;
 import com.futureadymedia.alumni.utils.CommonUtils;
 import com.futureadymedia.alumni.utils.Constants;
 import com.futureadymedia.alumni.utils.PrefsManager;
+import com.futureadymedia.alumni.utils.TextFont;
 import com.google.gson.Gson;
 
 /**
@@ -41,6 +44,8 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
     private Button btnSignupSubmit;
     private SignupModel signupmodel;
     private PrefsManager prefsManager;
+    private TextView tvIntroCode, tvSignupBtn;
+    private LinearLayout llSignup;
 
     public void onAttach(Context context){
         super.onAttach(context);
@@ -67,7 +72,10 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
         etConfirmPassword = (EditText)view.findViewById(R.id.etConformPassword);
         etIntroCode = (EditText)view.findViewById(R.id.etIntroCode);
 
-        btnSignupSubmit = (Button)view.findViewById(R.id.btnSignupSubmit);
+        tvIntroCode = (TextView) view.findViewById(R.id.tvIntroCode);
+        tvSignupBtn = (TextView) view.findViewById(R.id.tvSignupBtn);
+
+        llSignup = (LinearLayout) view.findViewById(R.id.llSignup);
 
         etFullName_layout = (TextInputLayout)view.findViewById(R.id.etFullName_layout);
         etMobile_layout = (TextInputLayout)view.findViewById(R.id.etMobile_layout);
@@ -79,12 +87,26 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
 
     @Override
     public void setListener() {
-        btnSignupSubmit.setOnClickListener(this);
+        llSignup.setOnClickListener(this);
     }
 
     @Override
     public void setFont() {
+        etFullName.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etMobile.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etEmail.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etPassword.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etConfirmPassword.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvIntroCode.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etIntroCode.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
 
+        tvSignupBtn.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+
+        etFullName_layout.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etMobile_layout.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etEmail_layout.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etPassword_layout.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        etConfirmPassword_layout.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
     }
 
     public void focusChangeListener(){
@@ -95,7 +117,7 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.btnSignupSubmit:
+            case R.id.llSignup:
                // ((MainActivity) context).onFragmentChange(7);
                 if(checkValidation())
                 {
@@ -161,38 +183,39 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
     public boolean checkValidation(){
         boolean status = true;
         if (TextUtils.isEmpty(etFullName.getText().toString().trim())) {
-            etFullName_layout.setError("Enter Full Name");
+          // etFullName_layout.setErrorEnabled(true);
+           // etFullName_layout.setFocusable(true);
             status = false;
         }
          if (TextUtils.isEmpty(etMobile.getText().toString().trim())){
-            etMobile_layout.setError("Please enter mobile number.");
+           // etMobile_layout.setError("Please enter mobile number.");
             status =  false;
         }else if (TextUtils.getTrimmedLength(etMobile.getText().toString())<=9){
-            etMobile_layout.setError("Please enter 10 digits number.");
+           //etMobile_layout.setError("Please enter 10 digits number.");
             status = false;
         }
         if (TextUtils.isEmpty(etEmail.getText().toString().trim())){
-            etEmail_layout.setError("Please enter email.");
+            //etEmail_layout.setError("Please enter email.");
             status = false;
         }else if (!TextUtils.isEmpty(etEmail.getText().toString().trim()) && !CommonUtils.isValidEmail(etEmail.getText().toString().trim())){
-            etEmail_layout.setError("Please enter valid email.");
+           // etEmail_layout.setError("Please enter valid email.");
             status = false;
         }
          if(TextUtils.isEmpty(etIntroCode.getText().toString().trim())){
-            etIntroCode_layout.setError("Please Enter Intro Code");
+           //  etIntroCode_layout.setError("Please Enter Intro Code");
              status = false;
         }
          if(TextUtils.isEmpty(etPassword.getText().toString().trim())){
-            etPassword_layout.setError("Please Enter Password");
+          //  etPassword_layout.setError("Please Enter Password");
             status = false;
         }
         if(((etConfirmPassword.getText().toString()).equals(etPassword.getText().toString())) && !(TextUtils.isEmpty(etPassword.getText().toString().trim())))
         {
-            etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.tick_green,0);
+            //etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.tick_green,0);
         }
         else
         {
-            etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.cross_red,0);
+          //  etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.cross_red,0);
 
             status = false;
         }
@@ -234,9 +257,9 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
             etPassword_layout.setError(null);
             etPassword_layout.setErrorEnabled(false);
         }
-        if (TextUtils.getTrimmedLength(etIntroCode.getText().toString()) > 0) {
-            etIntroCode_layout.setError(null);
-            etIntroCode_layout.setErrorEnabled(false);
+       if (TextUtils.getTrimmedLength(etIntroCode.getText().toString()) > 0) {
+           etIntroCode_layout.setError(null);
+           etIntroCode_layout.setErrorEnabled(false);
         }
 
 

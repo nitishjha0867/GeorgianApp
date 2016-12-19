@@ -20,6 +20,7 @@ import com.futureadymedia.alumni.activity.MainActivity;
 import com.futureadymedia.alumni.adapter.MyPagerAdapter;
 import com.futureadymedia.alumni.utils.CommonUtils;
 import com.futureadymedia.alumni.utils.Constants;
+import com.futureadymedia.alumni.utils.TextFont;
 import com.futureadymedia.alumni.widgets.NonSwipeableViewPager;
 
 import org.w3c.dom.Text;
@@ -70,12 +71,20 @@ public class FragmentSignupLogin extends BaseFragment implements View.OnClickLis
     {
         switch(position){
             case 0:
-                tvSignup.setBackgroundResource(R.color.colorPrimary);
-                tvLogin.setBackgroundResource(R.color.transparent);
+                linearSignup.setBackgroundResource(R.drawable.active_tab_left);
+                linearLogin.setBackgroundResource(R.drawable.tab_right);
+                tvLogin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.login_blue, 0, 0, 0);
+                tvLogin.setTextColor(getResources().getColor(R.color.gc_blue));
+                tvSignup.setTextColor(getResources().getColor(R.color.white));
+                tvSignup.setCompoundDrawablesWithIntrinsicBounds(R.drawable.signup_white, 0, 0, 0);
                 break;
             case 1:
-                tvLogin.setBackgroundResource(R.color.colorPrimary);
-                tvSignup.setBackgroundResource(R.color.transparent);
+                linearSignup.setBackgroundResource(R.drawable.tab_left);
+                linearLogin.setBackgroundResource(R.drawable.active_tab_right);
+                tvLogin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.login_white, 0, 0, 0);
+                tvSignup.setCompoundDrawablesWithIntrinsicBounds(R.drawable.signup_blue, 0, 0, 0);
+                tvLogin.setTextColor(getResources().getColor(R.color.white));
+                tvSignup.setTextColor(getResources().getColor(R.color.gc_blue));
                 break;
         }
     }
@@ -99,7 +108,8 @@ public class FragmentSignupLogin extends BaseFragment implements View.OnClickLis
 
     @Override
     public void setFont() {
-
+        tvSignup.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
+        tvLogin.setTypeface(TextFont.setFontFamily(context, TextFont.BARIOL_REGULAR));
     }
 
     @Override

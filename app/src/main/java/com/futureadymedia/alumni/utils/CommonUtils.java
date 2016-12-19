@@ -25,7 +25,7 @@ public class CommonUtils {
             ftTransaction.addToBackStack(fragment_tag);
         }
         ftTransaction.commit();
-        MainActivity.tvTitle.setText(title);
+//        MainActivity.tvTitle.setText(title);
     }
 
     public static boolean isValidEmail(CharSequence target) {

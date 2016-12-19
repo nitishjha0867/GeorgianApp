@@ -35,6 +35,11 @@
     <dimen name="size28">28dp</dimen>
     <dimen name="size29">29dp</dimen>
     <dimen name="size30">30dp</dimen>
+    <dimen name="size31">31dp</dimen>
+    <dimen name="size32">32dp</dimen>
+    <dimen name="size33">33dp</dimen>
+    <dimen name="size34">34dp</dimen>
+    <dimen name="size35">35dp</dimen>
 
     <dimen name="size40">40dp</dimen>
 

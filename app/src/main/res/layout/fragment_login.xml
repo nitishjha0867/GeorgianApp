@@ -6,9 +6,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size20"
-        android:layout_marginLeft="@dimen/size20"
-        android:layout_marginRight="@dimen/size20"
+        android:layout_margin="@dimen/size20"
+        android:paddingLeft="@dimen/size20"
+        android:paddingRight="@dimen/size20"
         android:visibility="invisible"
         android:orientation="horizontal">
 
@@ -16,40 +16,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:background="@drawable/border"
-            android:paddingTop="@dimen/size10"
-            android:paddingBottom="@dimen/size10"
+            android:background="@drawable/tab_left"
             android:layout_weight="0.5"
-            android:id="@+id/linearSignup">
+            android:id="@+id/linearSignup"
+            android:gravity="center_horizontal">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/gc_blue"
                 android:id="@+id/tvSignup"
-                android:text="Signup"/>
+                android:text="Signup"
+                android:textSize="@dimen/size15"
+                android:drawableLeft="@drawable/singnup_blue"
+                android:drawablePadding="@dimen/size10"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/size10"
+                android:paddingBottom="@dimen/size10" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/border"
+            android:background="@drawable/tab_right"
             android:gravity="center_horizontal"
-            android:paddingTop="@dimen/size10"
-            android:paddingBottom="@dimen/size10"
             android:layout_weight="0.5"
             android:id="@+id/linearLogin">
 
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:layout_height="match_parent"
+                android:textColor="@color/gc_blue"
                 android:id="@+id/tvLogin"
-                android:text="Login"/>
+                android:text="Login"
+                android:textSize="@dimen/size15"
+                android:drawableLeft="@drawable/login_blue"
+                android:drawablePadding="@dimen/size10"
+                android:paddingTop="@dimen/size10"
+                android:paddingBottom="@dimen/size10"
+                android:gravity="center_horizontal" />
         </LinearLayout>
 
     </LinearLayout>
@@ -64,7 +72,7 @@
             android:layout_marginLeft="@dimen/size20"
             android:layout_marginRight="@dimen/size20"
             android:layout_marginBottom="@dimen/size5"
-            android:layout_marginTop="@dimen/size5"
+            android:layout_marginTop="@dimen/size15"
             android:orientation="vertical">
 
             <LinearLayout
@@ -83,6 +91,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
+                        android:drawableLeft="@drawable/email"
+                        android:drawablePadding="@dimen/size15"
                         android:id="@+id/etEmailLogin"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -104,7 +114,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:id="@+id/etPasswordLogin"/>
+                        android:id="@+id/etPasswordLogin"
+                        android:drawableLeft="@drawable/password"
+                        android:drawablePadding="@dimen/size15"/>
 
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -112,42 +124,62 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/form_spacing_bottom"
-                android:layout_marginBottom="@dimen/form_spacing_bottom">
+                android:layout_marginBottom="@dimen/form_spacing_bottom"
+                android:layout_marginTop="@dimen/size25">
 
-                <Button
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/submit"
-                    android:id="@+id/btnLoginSubmit"></Button>
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:id="@+id/llLogin"
+                    android:background="@drawable/button_shape">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvLoginBtn"
+                        android:background="@color/transparent"
+                        android:text="@string/submit"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/size20"
+                        android:paddingTop="@dimen/size15"
+                        android:paddingBottom="@dimen/size15" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size20"
+                android:layout_marginTop="@dimen/size10"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tvForgot"
                         android:text="@string/forgot_password"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/size15"
+                        android:id="@+id/tvClickhere"
+                        android:textColor="@color/gc_blue"
+                        android:text="@string/click_here"
+                        android:layout_marginTop="@dimen/size5"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/size18"
-                        android:id="@+id/tvClickhere"
-                        android:text="@string/click_here"/>
+
                 </LinearLayout>
 
             </LinearLayout>
