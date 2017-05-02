@@ -152,12 +152,11 @@ public class FragmentLogin extends BaseFragment implements View.OnClickListener,
             @Override
             public void onSuccess(Object o) {
                 ServiceResponse servicesResponse = (ServiceResponse) o;
-                Log.e("Response", ""+servicesResponse);
+
                 if(servicesResponse.status.equals("success"))
                 {
-                    prefsManager.setUserId(servicesResponse.uid);
-
                    // ((MainActivity)context).onFragmentChange(6);
+                    MainActivity.saveData(servicesResponse);
 
                     startActivity(new Intent(context, MainActivity.class)
                             .putExtra(Constants.FRAGMENT_SECTION, Constants.FRAGMENT_USERBOARD)
@@ -202,4 +201,6 @@ public class FragmentLogin extends BaseFragment implements View.OnClickListener,
     public void afterTextChanged(Editable s) {
 
     }
+
+
 }

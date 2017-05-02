@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ivDP"
-                android:background="@drawable/ic_perm_identity_black_36dp"
+                android:src="@drawable/demo_pc"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -156,98 +156,139 @@
 
         </LinearLayout>
 
-            <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="@dimen/size20"
-            android:layout_marginRight="@dimen/size10"
-            android:layout_marginBottom="@dimen/size5"
-            android:gravity="center"
-            android:layout_weight="0.3">
 
+         <HorizontalScrollView
+             android:layout_width="wrap_content"
+             android:layout_height="0dp"
+             android:layout_weight="0.3">
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/size5"
-                android:gravity="center"
-                android:id="@+id/llSchoolDetails"
-                android:background="@drawable/profile_square">
-                <ImageView
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size20"
+                android:layout_marginRight="@dimen/size10"
+                android:layout_marginBottom="@dimen/size5"
+                android:gravity="center">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size5"
-                    android:id="@+id/ivSchoolDetails"
-                    android:src="@drawable/dashboard_school_blue"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gc_blue"
-                    android:layout_marginTop="@dimen/size5"
-                    android:layout_marginBottom="@dimen/size5"
-                    android:textSize="@dimen/size10"
-                    android:id="@+id/tvSchoolDetails"
-                    android:text="School Details"
-                    />
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/size5"
+                        android:gravity="center"
+                        android:id="@+id/llSchoolDetails"
+                        android:background="@drawable/profile_square">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size5"
+                            android:id="@+id/ivSchoolDetails"
+                            android:src="@drawable/dashboard_school_blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gc_blue"
+                            android:layout_marginTop="@dimen/size5"
+                            android:layout_marginBottom="@dimen/size5"
+                            android:textSize="@dimen/size10"
+                            android:id="@+id/tvSchoolDetails"
+                            android:text="School Details"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/size5"
+                        android:gravity="center"
+                        android:id="@+id/llProfessionalDetails"
+                        android:background="@drawable/profile_square">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size5"
+                            android:id="@+id/ivProffesionalDetails"
+                            android:src="@drawable/dashboard_professional_blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gc_blue"
+                            android:layout_marginTop="@dimen/size5"
+                            android:layout_marginBottom="@dimen/size5"
+                            android:textSize="@dimen/size10"
+                            android:id="@+id/tvProffesionalDetails"
+                            android:text="Proffesional Details"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/size5"
+                        android:gravity="center"
+                        android:id="@+id/llCurrentAddress"
+                        android:background="@drawable/profile_square">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size5"
+                            android:id="@+id/ivCurrentAddress"
+                            android:src="@drawable/dashboard_address_blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gc_blue"
+                            android:layout_marginTop="@dimen/size5"
+                            android:layout_marginBottom="@dimen/size5"
+                            android:textSize="@dimen/size10"
+                            android:id="@+id/tvCurrentAddress"
+                            android:text="Current Address"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/size5"
+                        android:gravity="center"
+                        android:id="@+id/llCurrentAddress1"
+                        android:background="@drawable/profile_square">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size5"
+                            android:id="@+id/ivCurrentAddress1"
+                            android:src="@drawable/dashboard_address_blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gc_blue"
+                            android:layout_marginTop="@dimen/size5"
+                            android:layout_marginBottom="@dimen/size5"
+                            android:textSize="@dimen/size10"
+                            android:id="@+id/tvCurrentAddress1"
+                            android:text="Current Address"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/size5"
-                android:gravity="center"
-                android:id="@+id/llProfessionalDetails"
-                android:background="@drawable/profile_square">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size5"
-                    android:id="@+id/ivProffesionalDetails"
-                    android:src="@drawable/dashboard_professional_blue"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gc_blue"
-                    android:layout_marginTop="@dimen/size5"
-                    android:layout_marginBottom="@dimen/size5"
-                    android:textSize="@dimen/size10"
-                    android:id="@+id/tvProffesionalDetails"
-                    android:text="Proffesional Details"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/size5"
-                android:gravity="center"
-                android:id="@+id/llCurrentAddress"
-                android:background="@drawable/profile_square">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size5"
-                    android:id="@+id/ivCurrentAddress"
-                    android:src="@drawable/dashboard_address_blue"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gc_blue"
-                    android:layout_marginTop="@dimen/size5"
-                    android:layout_marginBottom="@dimen/size5"
-                    android:textSize="@dimen/size10"
-                    android:id="@+id/tvCurrentAddress"
-                    android:text="Current Address"
-                    />
-            </LinearLayout>
-
-        </LinearLayout>
+         </HorizontalScrollView>
 
     </LinearLayout>
         </ScrollView>

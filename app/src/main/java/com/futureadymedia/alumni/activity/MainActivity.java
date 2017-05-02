@@ -47,6 +47,7 @@ import com.futureadymedia.alumni.fragment.FragmentUserProfile;
 import com.futureadymedia.alumni.fragment.FragmentVerification;
 import com.futureadymedia.alumni.fragment.MapViewFragment;
 import com.futureadymedia.alumni.listeners.FragmentChangeListener;
+import com.futureadymedia.alumni.services.ServiceResponse;
 import com.futureadymedia.alumni.utils.CommonUtils;
 import com.futureadymedia.alumni.utils.Constants;
 import com.futureadymedia.alumni.utils.DrawerLocker;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private Fragment fragment;
     private int position = 1;
     private FragmentManager fm;
-    private PrefsManager prefsManager;
+    public static PrefsManager prefsManager;
     private Context context;
     private Menu menu;
     public static TextView tvTitle;
@@ -518,5 +519,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public static void saveData(ServiceResponse servicesResponse){
+        prefsManager.setUserId(servicesResponse.uid);
+        prefsManager.setReferenceCode(servicesResponse.refferal_code);
+        prefsManager.setUserName(servicesResponse.full_name);
+        prefsManager.setUserEmail(servicesResponse.email);
+        prefsManager.setUserMobile(servicesResponse.mobile);
+        prefsManager.setUserProfilePic(servicesResponse.profile_pic);
     }
 }

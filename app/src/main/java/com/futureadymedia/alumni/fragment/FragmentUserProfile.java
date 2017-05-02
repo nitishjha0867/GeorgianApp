@@ -241,7 +241,24 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
     }
 
     public void setData(){
-        String uniqueID = prefsManager.getUserId();
+        tvName.setText(prefsManager.getUserName());
+        tvName1.setText(prefsManager.getUserName());
+        tvEmail.setText(prefsManager.getUserEmail());
+        tvEmail1.setText(prefsManager.getUserEmail());
+        etEmail.setText(prefsManager.getUserEmail());
+        tvMobile.setText(prefsManager.getUserMobile());
+        etMobile.setText(prefsManager.getUserMobile());
+        if(!prefsManager.getUserProfilePic().equals(""))
+        {
+            ivDP.setImageResource(R.color.transparent);
+            loadImageFromStorage("/data/data/com.futureadymedia.alumni/app_imageDir", prefsManager.getUserProfilePic());
+        }
+        else
+        {
+
+        }
+
+       /* String uniqueID = prefsManager.getUserId();
         String url = RequestURL.GET_PERSONAL_DATA;
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("user_id", uniqueID);
@@ -263,7 +280,7 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
                     tvName1.setText(toTitleCase(servicesResponse.full_name));
                    /* switchMobile.setChecked(servicesResponse.mobile_privacy);
                     switchEmail.setChecked(servicesResponse.email_privacy);*/
-                   loadImageFromStorage("/data/data/com.futureadymedia.alumni/app_imageDir", servicesResponse.profile_pic);
+                  /* loadImageFromStorage("/data/data/com.futureadymedia.alumni/app_imageDir", servicesResponse.profile_pic);
                 }
                 else
                 {
@@ -277,7 +294,7 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
 
             }
         });
-        serviceAsync.execute("");
+        serviceAsync.execute("");*/
     }
 
     public void uploadData() {
@@ -285,8 +302,6 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
             Profile_pic = getStringImage(BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath()));
         } catch (Exception e) {
         }
-
-
 
         personalInfo = new SignupModel();
         personalInfo.fullname = tvName.getText().toString();
@@ -325,13 +340,14 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
                             tvEmail.setVisibility(View.VISIBLE);
                             tvMobile.setVisibility(View.VISIBLE);
                             viewEmail.setVisibility(View.VISIBLE);
-                            //setData();
-                            tvName.setText(servicesResponse.full_name);
+                            MainActivity.saveData(servicesResponse);
+                            /*tvName.setText(servicesResponse.full_name);
                             tvName1.setText(servicesResponse.full_name);
                             tvEmail.setText(servicesResponse.email);
                             tvEmail1.setText(servicesResponse.email);
                             tvMobile.setText(servicesResponse.mobile);
-                            loadImageFromStorage("/data/data/com.futureadymedia.alumni/app_imageDir", servicesResponse.profile_pic);
+                            loadImageFromStorage("/data/data/com.futureadymedia.alumni/app_imageDir", servicesResponse.profile_pic);*/
+                            setData();
                             final Timer timer2 = new Timer();
                             timer2.schedule(new TimerTask() {
                                 public void run() {
@@ -406,7 +422,7 @@ public class FragmentUserProfile extends BaseFragment implements View.OnClickLis
         return directory.getAbsolutePath();
     }
 
-    private void loadImageFromStorage(String path, String db_profile_pic)
+    public void loadImageFromStorage(String path, String db_profile_pic)
     {
 
         try {

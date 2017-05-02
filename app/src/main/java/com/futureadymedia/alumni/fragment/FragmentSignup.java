@@ -152,10 +152,10 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
             public void onSuccess(Object o) {
                 ServiceResponse servicesResponse = (ServiceResponse) o;
                 Log.e("Responseeee", ""+servicesResponse.status);
+                Log.e("RespSignup", ""+servicesResponse.profile_pic);
                 if(servicesResponse.status.equals("success"))
                 {
-                    prefsManager.setUserId(servicesResponse.uid);
-
+                    MainActivity.saveData(servicesResponse);
                    // ((MainActivity)context).onFragmentChange(6);
 
                     startActivity(new Intent(context, MainActivity.class)
@@ -164,7 +164,7 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
                 }
                 else
                 {
-
+                    Toast.makeText(context, "Kindly fill the details correctly", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -269,7 +269,7 @@ public class FragmentSignup extends BaseFragment implements View.OnClickListener
     public void afterTextChanged(Editable s) {
         if(((etConfirmPassword.getText().toString()).equals(etPassword.getText().toString())) && (!TextUtils.isEmpty(etPassword.getText().toString().trim())))
         {
-            etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.tick_green,0);
+            //etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.tick_green,0);
         }
     }
 

@@ -42,6 +42,15 @@ public class PrefsManager {
     }
 
 
+    //*****************FOR REFFERAL CODE ***************************//
+
+    public String getRefferalCode(){ return getValue(REFERENCE_CODE);}
+
+    public void setReferenceCode(String referencecode){
+        setValue(REFERENCE_CODE, referencecode);
+    }
+
+
     //*****************FOR USER DETAILS*************************//
 
     //*****************FOR USER NAME*************************//
@@ -88,6 +97,7 @@ public class PrefsManager {
     public String getSchoolDetails() {
         return getValue(SCHOOL_DETAILS);
     }
+
 
     public void setSchoolDetails(String schooldetails) {
         setValue(SCHOOL_DETAILS, schooldetails);
